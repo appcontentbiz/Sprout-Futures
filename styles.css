@@ -905,3 +905,89 @@ footer {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+/* Nutritious Crops Section */
+.crops-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.crop-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.crop-card:hover {
+    transform: translateY(-5px);
+}
+
+.crop-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.crop-icon {
+    font-size: 2rem;
+}
+
+.crop-header h3 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.3rem;
+}
+
+.crop-benefits {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.category-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.category-tabs button {
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 8px;
+    background: var(--light-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.category-tabs button:hover {
+    background: var(--hover-bg);
+}
+
+.category-tabs button.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .crops-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .category-tabs {
+        flex-direction: column;
+        padding: 0 1rem;
+    }
+
+    .category-tabs button {
+        width: 100%;
+    }
+}

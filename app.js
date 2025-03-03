@@ -4,104 +4,264 @@ const nutritiousCrops = {
         {
             name: 'Kale',
             benefits: 'High in vitamins A, C, and K, calcium, and antioxidants',
-            icon: '🥬'
+            icon: '🥬',
+            growingInfo: {
+                season: 'Spring, Fall',
+                plantingTime: 'Early spring or late summer',
+                harvestTime: '50-60 days',
+                environment: 'Cool, moist soil',
+                climate: 'Temperate',
+                location: 'Full sun to partial shade'
+            }
         },
         {
             name: 'Spinach',
             benefits: 'Packed with iron, folate, and magnesium',
-            icon: '🍃'
+            icon: '🍃',
+            growingInfo: {
+                season: 'Spring, Fall',
+                plantingTime: 'Early spring or late summer',
+                harvestTime: '20-30 days',
+                environment: 'Cool, moist soil',
+                climate: 'Temperate',
+                location: 'Full sun to partial shade'
+            }
         },
         {
             name: 'Sweet Potatoes',
             benefits: 'Loaded with beta-carotene (vitamin A), fiber, and potassium',
-            icon: '🍠'
+            icon: '🍠',
+            growingInfo: {
+                season: 'Summer',
+                plantingTime: 'Late spring to early summer',
+                harvestTime: '100-120 days',
+                environment: 'Warm, well-drained soil',
+                climate: 'Tropical, subtropical',
+                location: 'Full sun'
+            }
         },
         {
             name: 'Broccoli',
             benefits: 'Rich in vitamins C and K, fiber, and cancer-fighting compounds',
-            icon: '🥦'
+            icon: '🥦',
+            growingInfo: {
+                season: 'Spring, Fall',
+                plantingTime: 'Early spring or late summer',
+                harvestTime: '55-65 days',
+                environment: 'Cool, moist soil',
+                climate: 'Temperate',
+                location: 'Full sun to partial shade'
+            }
         },
         {
             name: 'Carrots',
             benefits: 'Excellent source of beta-carotene and vitamin A for eye health',
-            icon: '🥕'
+            icon: '🥕',
+            growingInfo: {
+                season: 'Spring, Summer',
+                plantingTime: 'Early spring to late spring',
+                harvestTime: '60-70 days',
+                environment: 'Well-drained, loose soil',
+                climate: 'Temperate',
+                location: 'Full sun'
+            }
         },
         {
             name: 'Beets',
             benefits: 'Great for blood circulation, rich in nitrates and folate',
-            icon: '🫐'
+            icon: '🫐',
+            growingInfo: {
+                season: 'Spring, Summer',
+                plantingTime: 'Early spring to late spring',
+                harvestTime: '60-70 days',
+                environment: 'Well-drained, loose soil',
+                climate: 'Temperate',
+                location: 'Full sun'
+            }
         },
         {
             name: 'Red Bell Peppers',
             benefits: 'One of the best sources of vitamin C and antioxidants',
-            icon: '🫑'
+            icon: '🫑',
+            growingInfo: {
+                season: 'Summer',
+                plantingTime: 'Late spring to early summer',
+                harvestTime: '70-80 days',
+                environment: 'Warm, well-drained soil',
+                climate: 'Tropical, subtropical',
+                location: 'Full sun'
+            }
         },
         {
             name: 'Garlic',
             benefits: 'Known for immune-boosting and anti-inflammatory properties',
-            icon: '🧄'
+            icon: '🧄',
+            growingInfo: {
+                season: 'Fall',
+                plantingTime: 'Late summer to early fall',
+                harvestTime: '90-120 days',
+                environment: 'Well-drained, loose soil',
+                climate: 'Temperate',
+                location: 'Full sun'
+            }
         },
         {
             name: 'Brussels Sprouts',
             benefits: 'Packed with vitamin C, fiber, and cancer-fighting compounds',
-            icon: '🥬'
+            icon: '🥬',
+            growingInfo: {
+                season: 'Fall, Winter',
+                plantingTime: 'Late summer to early fall',
+                harvestTime: '80-100 days',
+                environment: 'Cool, moist soil',
+                climate: 'Temperate',
+                location: 'Full sun to partial shade'
+            }
         },
         {
             name: 'Swiss Chard',
             benefits: 'High in magnesium, iron, and vitamins A and K',
-            icon: '🥬'
+            icon: '🥬',
+            growingInfo: {
+                season: 'Spring, Summer',
+                plantingTime: 'Early spring to late spring',
+                harvestTime: '50-60 days',
+                environment: 'Well-drained, loose soil',
+                climate: 'Temperate',
+                location: 'Full sun'
+            }
         }
     ],
     fruits: [
         {
             name: 'Blueberries',
             benefits: 'Extremely high in antioxidants and brain-boosting compounds',
-            icon: '🫐'
+            icon: '🫐',
+            growingInfo: {
+                season: 'Summer',
+                plantingTime: 'Early spring to late spring',
+                harvestTime: '60-90 days',
+                environment: 'Acidic, well-drained soil',
+                climate: 'Temperate',
+                location: 'Full sun to partial shade'
+            }
         },
         {
             name: 'Avocados',
             benefits: 'Healthy fats, fiber, and nearly 20 essential vitamins and minerals',
-            icon: '🥑'
+            icon: '🥑',
+            growingInfo: {
+                season: 'Spring, Summer',
+                plantingTime: 'Late winter to early spring',
+                harvestTime: '120-180 days',
+                environment: 'Well-drained, loose soil',
+                climate: 'Tropical, subtropical',
+                location: 'Full sun'
+            }
         },
         {
             name: 'Blackberries',
             benefits: 'Rich in vitamin C, fiber, and polyphenols',
-            icon: '🫐'
+            icon: '🫐',
+            growingInfo: {
+                season: 'Summer',
+                plantingTime: 'Early spring to late spring',
+                harvestTime: '60-90 days',
+                environment: 'Well-drained, loose soil',
+                climate: 'Temperate',
+                location: 'Full sun'
+            }
         },
         {
             name: 'Papaya',
             benefits: 'High in vitamin C, digestive enzymes, and beta-carotene',
-            icon: '🍈'
+            icon: '🍈',
+            growingInfo: {
+                season: 'Summer',
+                plantingTime: 'Late spring to early summer',
+                harvestTime: '100-120 days',
+                environment: 'Well-drained, loose soil',
+                climate: 'Tropical',
+                location: 'Full sun'
+            }
         },
         {
             name: 'Pomegranate',
             benefits: 'Loaded with antioxidants and heart-healthy polyphenols',
-            icon: '🍎'
+            icon: '🍎',
+            growingInfo: {
+                season: 'Fall',
+                plantingTime: 'Late winter to early spring',
+                harvestTime: '120-180 days',
+                environment: 'Well-drained, loose soil',
+                climate: 'Temperate',
+                location: 'Full sun'
+            }
         },
         {
             name: 'Oranges',
             benefits: 'Excellent vitamin C source for immunity and skin health',
-            icon: '🍊'
+            icon: '🍊',
+            growingInfo: {
+                season: 'Winter',
+                plantingTime: 'Late winter to early spring',
+                harvestTime: '120-180 days',
+                environment: 'Well-drained, loose soil',
+                climate: 'Tropical, subtropical',
+                location: 'Full sun'
+            }
         },
         {
             name: 'Bananas',
             benefits: 'Potassium-rich and great for energy',
-            icon: '🍌'
+            icon: '🍌',
+            growingInfo: {
+                season: 'Summer',
+                plantingTime: 'Late spring to early summer',
+                harvestTime: '100-120 days',
+                environment: 'Well-drained, loose soil',
+                climate: 'Tropical',
+                location: 'Full sun'
+            }
         },
         {
             name: 'Strawberries',
             benefits: 'High in vitamin C and antioxidants',
-            icon: '🍓'
+            icon: '🍓',
+            growingInfo: {
+                season: 'Spring, Summer',
+                plantingTime: 'Early spring to late spring',
+                harvestTime: '60-90 days',
+                environment: 'Well-drained, loose soil',
+                climate: 'Temperate',
+                location: 'Full sun'
+            }
         },
         {
             name: 'Cherries',
             benefits: 'Anti-inflammatory properties and melatonin for sleep regulation',
-            icon: '🍒'
+            icon: '🍒',
+            growingInfo: {
+                season: 'Summer',
+                plantingTime: 'Early spring to late spring',
+                harvestTime: '60-90 days',
+                environment: 'Well-drained, loose soil',
+                climate: 'Temperate',
+                location: 'Full sun'
+            }
         },
         {
             name: 'Grapes',
             benefits: 'Contain resveratrol, which supports heart health',
-            icon: '🍇'
+            icon: '🍇',
+            growingInfo: {
+                season: 'Summer, Fall',
+                plantingTime: 'Early spring to late spring',
+                harvestTime: '100-120 days',
+                environment: 'Well-drained, loose soil',
+                climate: 'Temperate',
+                location: 'Full sun'
+            }
         }
     ]
 };
@@ -614,29 +774,87 @@ const budgetRecommendations = {
 // Populate nutritious crops
 function populateNutritiousCrops(category = 'vegetables') {
     const cropCategories = document.getElementById('cropCategories');
-    cropCategories.innerHTML = '';
-
+    const cropList = document.getElementById('nutritiousCropsList');
     const crops = nutritiousCrops[category];
-    const container = document.createElement('div');
-    container.className = 'crop-category';
 
-    crops.forEach(crop => {
-        const item = document.createElement('div');
-        item.className = 'crop-item';
-        item.innerHTML = `
-            <span class="crop-icon">${crop.icon}</span>
-            <div class="crop-info">
-                <h3>${crop.name}</h3>
-                <p>${crop.benefits}</p>
-            </div>
-        `;
-        container.appendChild(item);
+    // Update active category
+    cropCategories.querySelectorAll('button').forEach(button => {
+        button.classList.remove('active');
+        if (button.dataset.category === category) {
+            button.classList.add('active');
+        }
     });
 
-    cropCategories.appendChild(container);
+    // Populate crops
+    cropList.innerHTML = crops.map(crop => `
+        <div class="crop-card" data-crop="${crop.name.toLowerCase()}">
+            <div class="crop-header">
+                <span class="crop-icon">${crop.icon}</span>
+                <h3>${crop.name}</h3>
+            </div>
+            <p class="crop-benefits">${crop.benefits}</p>
+            <button class="info-button" onclick="showGrowingInfo('${crop.name}', '${category}')">
+                Growing Information
+            </button>
+        </div>
+    `).join('');
 }
 
-// Populate quick-return crops
+// Show growing information modal
+function showGrowingInfo(cropName, category) {
+    const crop = nutritiousCrops[category].find(c => c.name === cropName);
+    if (!crop) return;
+
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>${crop.icon} ${crop.name} Growing Guide</h2>
+                <button class="close-button" onclick="this.closest('.modal').remove()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="growing-info-grid">
+                    <div class="info-item">
+                        <h4>Best Season</h4>
+                        <p>${crop.growingInfo.season}</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>When to Plant</h4>
+                        <p>${crop.growingInfo.plantingTime}</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Time to Harvest</h4>
+                        <p>${crop.growingInfo.harvestTime}</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Growing Environment</h4>
+                        <p>${crop.growingInfo.environment}</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Climate Requirements</h4>
+                        <p>${crop.growingInfo.climate}</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Ideal Location</h4>
+                        <p>${crop.growingInfo.location}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // Close modal when clicking outside
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
+}
+
+// Quick-return crops data
 function populateQuickCrops() {
     const cropCards = document.getElementById('cropCards');
     cropCards.innerHTML = '';
@@ -661,7 +879,7 @@ function populateQuickCrops() {
     });
 }
 
-// Populate equipment grid
+// Equipment grid
 function populateEquipment(type = 'indoor') {
     const equipmentGrid = document.getElementById('equipmentGrid');
     equipmentGrid.innerHTML = '';
@@ -682,7 +900,7 @@ function populateEquipment(type = 'indoor') {
     });
 }
 
-// Populate education options
+// Education options
 function populateEducation(type = 'degrees') {
     const educationOptions = document.getElementById('educationOptions');
     educationOptions.innerHTML = '';

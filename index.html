@@ -31,13 +31,18 @@
     </header>
 
     <main>
-        <section id="nutritious-crops" class="crops-section">
+        <section id="nutritious-crops" class="section">
             <h2>Most Nutritious Crops</h2>
-            <div class="category-tabs">
+            <p class="section-subtitle">High-Value Crops for Health and Profit</p>
+
+            <div class="category-tabs" id="cropCategories">
                 <button class="tab-button active" data-category="vegetables">Vegetables</button>
                 <button class="tab-button" data-category="fruits">Fruits</button>
             </div>
-            <div class="crop-categories" id="cropCategories"></div>
+
+            <div id="nutritiousCropsList" class="crops-grid">
+                <!-- Content will be populated by JavaScript -->
+            </div>
         </section>
 
         <section id="quick-crops" class="quick-crops-section">
