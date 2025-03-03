@@ -771,6 +771,210 @@ const budgetRecommendations = {
     }
 };
 
+// Edible Flowers Data
+const edibleFlowers = [
+    {
+        name: "Moringa",
+        scientific: "Moringa oleifera",
+        icon: "🌿",
+        rank: 1,
+        why: "Called the \"Miracle Tree,\" moringa is packed with protein, iron, calcium, vitamin C, and antioxidants.",
+        benefits: "Supports immune function, reduces inflammation, and is a natural energy booster.",
+        growing: {
+            climate: "Warm, tropical to subtropical",
+            environment: "Grows well outdoors in warm climates but can be potted indoors",
+            harvestTime: "6-8 months after planting"
+        }
+    },
+    {
+        name: "Nasturtium",
+        scientific: "Tropaeolum majus",
+        icon: "🌼",
+        rank: 2,
+        why: "High in vitamin C, lutein, and anti-microbial compounds.",
+        benefits: "Natural antibiotic, boosts vision health, and improves immunity.",
+        growing: {
+            climate: "Temperate, frost-sensitive",
+            environment: "Both; thrives in containers",
+            harvestTime: "Flowers appear within 8-12 weeks"
+        }
+    },
+    {
+        name: "Hibiscus",
+        scientific: "Hibiscus sabdariffa",
+        icon: "🌸",
+        rank: 3,
+        why: "Rich in antioxidants, vitamin C, and flavonoids.",
+        benefits: "Lowers blood pressure, aids digestion, and is great for skin health.",
+        growing: {
+            climate: "Warm, tropical",
+            environment: "Best outdoors but can be container-grown indoors",
+            harvestTime: "4-6 months for flowers"
+        }
+    },
+    {
+        name: "Rose",
+        scientific: "Rosa spp.",
+        icon: "🌺",
+        rank: 4,
+        why: "Petals contain vitamin C and polyphenols.",
+        benefits: "Anti-inflammatory, relieves stress, and improves skin health.",
+        growing: {
+            climate: "Mild to warm",
+            environment: "Can be grown indoors in pots",
+            harvestTime: "12-18 months for the first full bloom"
+        }
+    },
+    {
+        name: "Dandelion",
+        scientific: "Taraxacum officinale",
+        icon: "🌿",
+        rank: 5,
+        why: "Leaves are rich in vitamin A, C, K, and iron.",
+        benefits: "Supports liver function, detoxifies blood, and helps digestion.",
+        growing: {
+            climate: "Any; very hardy",
+            environment: "Outdoor preferred, but can grow indoors",
+            harvestTime: "2-3 months"
+        }
+    },
+    {
+        name: "Chamomile",
+        scientific: "Matricaria chamomilla",
+        icon: "🌸",
+        rank: 6,
+        why: "High in antioxidants, flavonoids, and anti-inflammatory compounds.",
+        benefits: "Aids sleep, digestion, and reduces stress.",
+        growing: {
+            climate: "Temperate, grows well in most conditions",
+            environment: "Great for pots and outdoor gardens",
+            harvestTime: "6-8 weeks after planting"
+        }
+    },
+    {
+        name: "Lavender",
+        scientific: "Lavandula spp.",
+        icon: "🌺",
+        rank: 7,
+        why: "Contains linalool, an antimicrobial and stress-reducing compound.",
+        benefits: "Aids relaxation, reduces headaches, and improves skin health.",
+        growing: {
+            climate: "Mediterranean, prefers dry, warm conditions",
+            environment: "Best grown outdoors but can thrive indoors with ample light",
+            harvestTime: "3 months"
+        }
+    },
+    {
+        name: "Calendula",
+        scientific: "Calendula officinalis",
+        icon: "🌸",
+        rank: 8,
+        why: "Rich in beta-carotene, flavonoids, and antioxidants.",
+        benefits: "Anti-inflammatory, boosts skin health, and supports wound healing.",
+        growing: {
+            climate: "Cool-season plant, thrives in temperate areas",
+            environment: "Great for gardens and containers",
+            harvestTime: "2-3 months"
+        }
+    },
+    {
+        name: "Alfalfa Sprouts",
+        scientific: "Medicago sativa",
+        icon: "🌱",
+        rank: 9,
+        why: "High in protein, vitamin K, and phytoestrogens.",
+        benefits: "Supports bone health and balances hormones.",
+        growing: {
+            climate: "Indoor hydroponics or temperate climate",
+            environment: "Best grown indoors",
+            harvestTime: "7-10 days"
+        }
+    },
+    {
+        name: "Clover",
+        scientific: "Trifolium spp.",
+        icon: "🍀",
+        rank: 10,
+        why: "Contains isoflavones that help with inflammation and blood circulation.",
+        benefits: "Supports heart health and reduces menopausal symptoms.",
+        growing: {
+            climate: "Hardy and grows anywhere",
+            environment: "Best grown outdoors",
+            harvestTime: "8-12 weeks"
+        }
+    }
+];
+
+const additionalFlowers = [
+    { name: "Borage", benefit: "High in Omega-6, reduces stress" },
+    { name: "Sunflower", benefit: "Seeds rich in vitamin E, good for heart health" },
+    { name: "Elderflower", benefit: "Supports respiratory health" },
+    { name: "Chrysanthemum", benefit: "Anti-inflammatory properties" },
+    { name: "Pansy", benefit: "Helps reduce colds and sore throats" },
+    { name: "Marjoram", benefit: "Aids digestion, good for gut health" },
+    { name: "Thyme", benefit: "Natural antibiotic, boosts immunity" },
+    { name: "Mint", benefit: "Relieves digestive issues and headaches" },
+    { name: "Lemon Balm", benefit: "Helps anxiety and boosts focus" },
+    { name: "Fennel Flowers", benefit: "Supports digestion, high in fiber" },
+    { name: "Basil", benefit: "Anti-inflammatory, improves heart health" },
+    { name: "Clover Blossoms", benefit: "Good for hormone balance" },
+    { name: "Saffron", benefit: "High in antioxidants, boosts mood" },
+    { name: "Yarrow", benefit: "Aids wound healing, good for the immune system" },
+    { name: "Peppermint", benefit: "Aids digestion and relieves nausea" }
+];
+
+// Render Edible Flowers
+function renderEdibleFlowers() {
+    const flowersList = document.getElementById('topFlowersList');
+    
+    // Render top 10 flowers with detailed cards
+    const topFlowersHTML = edibleFlowers.map(flower => `
+        <div class="flower-card">
+            <div class="flower-header">
+                <span class="flower-rank">#${flower.rank}</span>
+                <span class="flower-icon">${flower.icon}</span>
+                <h3>${flower.name}</h3>
+                <p class="scientific-name">${flower.scientific}</p>
+            </div>
+            <div class="flower-content">
+                <div class="info-section">
+                    <h4>✔ Why?</h4>
+                    <p>${flower.why}</p>
+                </div>
+                <div class="info-section">
+                    <h4>✔ Health Benefits</h4>
+                    <p>${flower.benefits}</p>
+                </div>
+                <div class="info-section">
+                    <h4>✔ How to Grow</h4>
+                    <ul>
+                        <li><strong>Best Climate:</strong> ${flower.growing.climate}</li>
+                        <li><strong>Indoor/Outdoor?</strong> ${flower.growing.environment}</li>
+                        <li><strong>Harvest Time:</strong> ${flower.growing.harvestTime}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    // Render additional flowers in a compact grid
+    const additionalFlowersHTML = `
+        <div class="additional-flowers">
+            <h3>Other Nutritious Edible Flowers & Plants</h3>
+            <div class="additional-flowers-grid">
+                ${additionalFlowers.map(flower => `
+                    <div class="mini-flower-card">
+                        <h4>✅ ${flower.name}</h4>
+                        <p>${flower.benefit}</p>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+
+    flowersList.innerHTML = topFlowersHTML + additionalFlowersHTML;
+}
+
 // Populate nutritious crops
 function populateNutritiousCrops(category = 'vegetables') {
     const cropCategories = document.getElementById('cropCategories');
@@ -1392,9 +1596,9 @@ document.addEventListener('DOMContentLoaded', () => {
     populateQuickCrops();
     renderFinancialStability();
     populateEquipment('indoor');
-    populateEducation('degrees');
     renderMarketingStrategies('microgreens');
     renderBudgetRecommendations('small');
+    renderEdibleFlowers();
     initializeCalculator();
 
     // Tab buttons for nutritious crops
