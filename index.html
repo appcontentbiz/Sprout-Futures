@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprout Futures - Your Path to Profitable Farming</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">🌱 Sprout Futures</div>
+        <div class="nav-links">
+            <a href="#crops">Crops</a>
+            <a href="#equipment">Equipment</a>
+            <a href="#education">Education</a>
+            <a href="#calculator">ROI Calculator</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Grow Your Farming Future</h1>
+        <p>From seed to success: Your guide to nutritious and profitable farming</p>
+    </header>
+
+    <main>
+        <section id="crops" class="crops-section">
+            <h2>Featured Crops</h2>
+            <div class="crop-cards" id="cropCards"></div>
+        </section>
+
+        <section id="equipment" class="equipment-section">
+            <h2>Essential Equipment</h2>
+            <div class="equipment-grid" id="equipmentGrid"></div>
+        </section>
+
+        <section id="education" class="education-section">
+            <h2>Learning Resources</h2>
+            <div class="education-options" id="educationOptions"></div>
+        </section>
+
+        <section id="calculator" class="calculator-section">
+            <h2>ROI Calculator</h2>
+            <div class="calculator-container">
+                <div class="calculator-inputs">
+                    <select id="cropType">
+                        <option value="">Select Crop Type</option>
+                    </select>
+                    <input type="number" id="investment" placeholder="Initial Investment ($)">
+                    <input type="number" id="space" placeholder="Available Space (sq ft)">
+                </div>
+                <button id="calculateROI">Calculate ROI</button>
+                <div id="roiResult" class="roi-result"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p> 2025 Sprout Futures - Your Guide to Nutritious and Profitable Farming</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
