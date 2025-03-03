@@ -1176,3 +1176,113 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+/* Financial Section Styles */
+.quick-income-section,
+.stable-income-section {
+    margin-bottom: 3rem;
+}
+
+.crop-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.crop-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.crop-card:hover {
+    transform: translateY(-5px);
+}
+
+.crop-header {
+    margin-bottom: 1rem;
+}
+
+.crop-header h4 {
+    color: var(--primary-color);
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.crop-header .nickname {
+    color: var(--text-color);
+    font-style: italic;
+    margin: 0.25rem 0;
+    opacity: 0.9;
+}
+
+.crop-details p {
+    margin: 0.5rem 0;
+    line-height: 1.4;
+}
+
+.crop-details strong {
+    color: var(--primary-color);
+}
+
+.success-strategy {
+    background: var(--light-bg);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+.success-strategy h3 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.strategy-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.strategy-card h4 {
+    color: var(--primary-color);
+    margin: 0 0 1rem 0;
+}
+
+.strategy-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.strategy-card li {
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.strategy-card li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .crop-cards-grid,
+    .strategy-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .success-strategy {
+        padding: 1.5rem;
+    }
+}

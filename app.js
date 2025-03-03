@@ -983,6 +983,79 @@ const additionalFlowers = [
     }
 ];
 
+// Financial and Growth Data
+const fastGrowingCrops = [
+    {
+        name: "Microgreens",
+        varieties: ["Alfalfa", "Clover", "Basil", "Sunflower Sprouts", "Pea Shoots"],
+        growthTime: "7-14 days",
+        why: "Can be grown indoors year-round and harvested multiple times per month.",
+        marketDemand: "High demand in restaurants, health-conscious consumers, and farmers' markets.",
+        bestFor: "Quick cash flow, small indoor setups"
+    },
+    {
+        name: "Nasturtium",
+        scientific: "Tropaeolum majus",
+        growthTime: "8-12 weeks for flowers and leaves",
+        why: "Grows fast and sells well as a gourmet garnish and edible flower.",
+        marketDemand: "High-end restaurants, bakeries, florists.",
+        bestFor: "Indoor or outdoor, fresh flower markets"
+    },
+    {
+        name: "Chamomile",
+        scientific: "Matricaria chamomilla",
+        growthTime: "6-8 weeks",
+        why: "Easy to dry and sell as a tea herb.",
+        marketDemand: "Herbal tea industry, natural health markets.",
+        bestFor: "Home-based herb farming, tea brands"
+    }
+];
+
+const financiallyStableCrops = [
+    {
+        name: "Saffron",
+        scientific: "Crocus sativus",
+        nickname: "Gold of Spices",
+        growthTime: "6-8 months",
+        marketPrice: "$500-$5,000 per pound",
+        why: "Low input, high returns, long shelf life.",
+        bestFor: "High-end culinary, medicinal, and cosmetics industries"
+    },
+    {
+        name: "Moringa",
+        scientific: "Moringa oleifera",
+        nickname: "Miracle Tree",
+        growthTime: "6-8 months",
+        marketDemand: "Superfood industry (powders, oils, supplements)",
+        why: "Every part of the plant (leaves, seeds, oil) can be sold, creating multiple income streams.",
+        bestFor: "Large-scale organic farming, health-focused markets"
+    },
+    {
+        name: "Lavender",
+        scientific: "Lavandula spp.",
+        growthTime: "3-4 months (first harvest, then annual yields)",
+        marketDemand: "Aromatherapy, skincare, culinary, and medicinal uses",
+        why: "Dried flowers and essential oils have long shelf life and high market value.",
+        bestFor: "Sustainable farming, high-end herbal and cosmetic industries"
+    },
+    {
+        name: "Mushrooms",
+        varieties: ["Lion's Mane", "Oyster", "Shiitake"],
+        growthTime: "3-8 weeks",
+        marketDemand: "High demand in gourmet cooking, medicine, and supplements",
+        why: "Low space requirements and high yield per square foot.",
+        bestFor: "Indoor farming, small space operations, year-round income"
+    },
+    {
+        name: "Elderflower",
+        scientific: "Sambucus nigra",
+        growthTime: "2-3 years for full production",
+        marketDemand: "Herbal medicine, syrup, wine, and skincare",
+        why: "High-value niche product with strong demand.",
+        bestFor: "Boutique herbal markets, tea and syrup brands"
+    }
+];
+
 // Render Edible Flowers
 function renderEdibleFlowers() {
     const flowersList = document.getElementById('topFlowersList');
@@ -1033,7 +1106,82 @@ function renderEdibleFlowers() {
         </div>
     `;
 
-    flowersList.innerHTML = topFlowersHTML + additionalFlowersHTML;
+    // Add financial section
+    const financialHTML = `
+        <div class="farming-strategy">
+            <h2>🌿 Fastest-Growing & Most Financially Stable Edible Flowers & Plants</h2>
+            
+            <div class="quick-income-section">
+                <h3>⚡ Fastest-Growing Crops (Immediate Income Potential)</h3>
+                <div class="crop-cards-grid">
+                    ${fastGrowingCrops.map(crop => `
+                        <div class="crop-card">
+                            <div class="crop-header">
+                                <h4>${crop.name}</h4>
+                                ${crop.scientific ? `<p class="scientific-name">${crop.scientific}</p>` : ''}
+                            </div>
+                            <div class="crop-details">
+                                <p><strong>🕒 Growth Time:</strong> ${crop.growthTime}</p>
+                                <p><strong>💡 Why?</strong> ${crop.why}</p>
+                                <p><strong>📈 Market:</strong> ${crop.marketDemand}</p>
+                                <p><strong>✨ Best for:</strong> ${crop.bestFor}</p>
+                                ${crop.varieties ? `
+                                    <p><strong>🌱 Varieties:</strong> ${crop.varieties.join(', ')}</p>
+                                ` : ''}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+
+            <div class="stable-income-section">
+                <h3>💰 Most Financially Stable Crops (High-Profit & Long-Term Growth)</h3>
+                <div class="crop-cards-grid">
+                    ${financiallyStableCrops.map(crop => `
+                        <div class="crop-card">
+                            <div class="crop-header">
+                                <h4>${crop.name}</h4>
+                                ${crop.scientific ? `<p class="scientific-name">${crop.scientific}</p>` : ''}
+                                ${crop.nickname ? `<p class="nickname">"${crop.nickname}"</p>` : ''}
+                            </div>
+                            <div class="crop-details">
+                                <p><strong>🕒 Growth Time:</strong> ${crop.growthTime}</p>
+                                ${crop.marketPrice ? `<p><strong>💰 Market Price:</strong> ${crop.marketPrice}</p>` : ''}
+                                ${crop.marketDemand ? `<p><strong>📈 Market:</strong> ${crop.marketDemand}</p>` : ''}
+                                <p><strong>💡 Why?</strong> ${crop.why}</p>
+                                <p><strong>✨ Best for:</strong> ${crop.bestFor}</p>
+                                ${crop.varieties ? `
+                                    <p><strong>🌱 Varieties:</strong> ${crop.varieties.join(', ')}</p>
+                                ` : ''}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+
+            <div class="success-strategy">
+                <h3>💡 Best Strategy for Success</h3>
+                <div class="strategy-grid">
+                    <div class="strategy-card">
+                        <h4>📌 If You Want Quick Income:</h4>
+                        <ul>
+                            <li>Start with microgreens, mushrooms, nasturtium, and chamomile (low-cost, fast growth).</li>
+                            <li>Sell directly to local markets, chefs, and herbalists.</li>
+                        </ul>
+                    </div>
+                    <div class="strategy-card">
+                        <h4>📌 For High Profits & Sustainability:</h4>
+                        <ul>
+                            <li>Invest in saffron, lavender, elderflower, and moringa for long-term income.</li>
+                            <li>Build partnerships with skincare, herbal medicine, and gourmet food companies.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    flowersList.innerHTML = topFlowersHTML + additionalFlowersHTML + financialHTML;
 }
 
 // Populate nutritious crops
