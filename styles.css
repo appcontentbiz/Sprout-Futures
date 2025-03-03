@@ -5,6 +5,7 @@
     --text-color: #2c3e50;
     --light-bg: #f9f9f9;
     --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
 }
 
 * {
@@ -19,6 +20,7 @@ body {
     color: var(--text-color);
 }
 
+/* Navigation */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -41,25 +43,28 @@ body {
     gap: 0.5rem;
 }
 
-.logo::before {
-    content: "🌱";
-    font-size: 1.8rem;
+.nav-links {
+    display: flex;
+    gap: 2rem;
 }
 
 .nav-links a {
-    margin-left: 2rem;
     text-decoration: none;
     color: var(--text-color);
     font-weight: 500;
-    transition: color 0.3s;
+    transition: var(--transition);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
 }
 
 .nav-links a:hover {
     color: var(--primary-color);
+    background: var(--light-bg);
 }
 
+/* Hero Section */
 .hero {
-    height: 80vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -71,7 +76,7 @@ body {
 }
 
 .hero h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin-bottom: 1rem;
     color: var(--text-color);
 }
@@ -80,110 +85,424 @@ body {
     font-size: 1.2rem;
     color: var(--text-color);
     opacity: 0.8;
+    margin-bottom: 2rem;
 }
 
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.cta-button {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--card-shadow);
+}
+
+.cta-button.secondary {
+    background: white;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+/* Sections */
 section {
     padding: 5rem 5%;
 }
 
-.crop-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    color: var(--text-color);
 }
 
-.crop-card {
+/* Tabs */
+.category-tabs, .education-tabs, .equipment-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.tab-button, .toggle-button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    background: var(--light-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.tab-button.active, .toggle-button.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Crop Categories */
+.crop-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.crop-category {
     background: white;
     border-radius: 10px;
-    padding: 1.5rem;
+    padding: 2rem;
     box-shadow: var(--card-shadow);
-    transition: transform 0.3s;
+    transition: var(--transition);
 }
 
-.crop-card:hover {
+.crop-category:hover {
     transform: translateY(-5px);
 }
 
-.crop-card h3 {
-    color: var(--primary-color);
+.crop-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+    background: var(--light-bg);
 }
 
+.crop-icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+/* Equipment Grid */
 .equipment-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
-    margin-top: 2rem;
 }
 
 .equipment-item {
     background: white;
     border-radius: 10px;
-    padding: 1.5rem;
+    padding: 2rem;
     box-shadow: var(--card-shadow);
+    transition: var(--transition);
 }
 
+.equipment-item:hover {
+    transform: translateY(-5px);
+}
+
+.equipment-icon {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Education Section */
 .education-options {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    margin-top: 2rem;
 }
 
 .education-card {
     background: white;
     border-radius: 10px;
-    padding: 1.5rem;
+    padding: 2rem;
     box-shadow: var(--card-shadow);
+    transition: var(--transition);
 }
 
+.education-card:hover {
+    transform: translateY(-5px);
+}
+
+.school-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.school-link:hover {
+    text-decoration: underline;
+}
+
+/* Calculator Section */
 .calculator-container {
-    max-width: 600px;
+    max-width: 800px;
     margin: 2rem auto;
     background: white;
-    padding: 2rem;
+    padding: 3rem;
     border-radius: 10px;
     box-shadow: var(--card-shadow);
 }
 
 .calculator-inputs {
     display: grid;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-weight: 500;
+    color: var(--text-color);
 }
 
 select, input {
-    padding: 0.8rem;
-    border: 1px solid #ddd;
+    padding: 1rem;
+    border: 2px solid #eee;
     border-radius: 5px;
     font-size: 1rem;
+    transition: var(--transition);
 }
 
-button {
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background 0.3s;
-}
-
-button:hover {
-    background: var(--secondary-color);
+select:focus, input:focus {
+    border-color: var(--primary-color);
+    outline: none;
 }
 
 .roi-result {
-    margin-top: 1.5rem;
-    padding: 1rem;
-    border-radius: 5px;
+    margin-top: 2rem;
+    padding: 2rem;
+    border-radius: 10px;
     background: var(--light-bg);
 }
 
-footer {
-    text-align: center;
+/* New Features Styles */
+.new-features {
     padding: 2rem;
     background: var(--light-bg);
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.feature-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Weather Widget */
+.weather-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* Seasonal Planting Calendar */
+.seasonal-crops {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.crop-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.crop-column li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Companion Planting Guide */
+.companion-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.companion-list li {
+    background: var(--light-bg);
+    margin: 0.5rem 0;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.companion-tip {
+    font-style: italic;
+    color: var(--text-muted);
+    margin-top: 1rem;
+}
+
+/* Growth Progress Tracker */
+.add-crop-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.crop-progress {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: var(--light-bg);
+    border-radius: 5px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 0.5rem 0;
+}
+
+.progress {
+    height: 100%;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.remove-crop {
+    background: var(--danger-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+
+/* Market Price Tracker */
+.price-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.price-item {
+    padding: 1rem;
+    background: var(--light-bg);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.price-change {
+    font-size: 0.9rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+}
+
+.price-up .price-change {
+    color: var(--success-color);
+    background: rgba(40, 167, 69, 0.1);
+}
+
+.price-down .price-change {
+    color: var(--danger-color);
+    background: rgba(220, 53, 69, 0.1);
+}
+
+.last-update {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+/* Footer */
+footer {
+    background: var(--light-bg);
+    padding: 4rem 5% 2rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.footer-section a {
+    display: block;
+    color: var(--text-color);
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    transition: var(--transition);
+}
+
+.footer-section a:hover {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #ddd;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .calculator-inputs {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .seasonal-crops {
+        grid-template-columns: 1fr;
+    }
+
+    .price-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
