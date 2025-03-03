@@ -906,21 +906,81 @@ const edibleFlowers = [
 ];
 
 const additionalFlowers = [
-    { name: "Borage", benefit: "High in Omega-6, reduces stress" },
-    { name: "Sunflower", benefit: "Seeds rich in vitamin E, good for heart health" },
-    { name: "Elderflower", benefit: "Supports respiratory health" },
-    { name: "Chrysanthemum", benefit: "Anti-inflammatory properties" },
-    { name: "Pansy", benefit: "Helps reduce colds and sore throats" },
-    { name: "Marjoram", benefit: "Aids digestion, good for gut health" },
-    { name: "Thyme", benefit: "Natural antibiotic, boosts immunity" },
-    { name: "Mint", benefit: "Relieves digestive issues and headaches" },
-    { name: "Lemon Balm", benefit: "Helps anxiety and boosts focus" },
-    { name: "Fennel Flowers", benefit: "Supports digestion, high in fiber" },
-    { name: "Basil", benefit: "Anti-inflammatory, improves heart health" },
-    { name: "Clover Blossoms", benefit: "Good for hormone balance" },
-    { name: "Saffron", benefit: "High in antioxidants, boosts mood" },
-    { name: "Yarrow", benefit: "Aids wound healing, good for the immune system" },
-    { name: "Peppermint", benefit: "Aids digestion and relieves nausea" }
+    { 
+        name: "Borage",
+        scientific: "Borago officinalis",
+        benefit: "High in Omega-6, reduces stress"
+    },
+    { 
+        name: "Sunflower",
+        scientific: "Helianthus annuus",
+        benefit: "Seeds rich in vitamin E, good for heart health"
+    },
+    { 
+        name: "Elderflower",
+        scientific: "Sambucus nigra",
+        benefit: "Supports respiratory health"
+    },
+    { 
+        name: "Chrysanthemum",
+        scientific: "Chrysanthemum morifolium",
+        benefit: "Anti-inflammatory properties"
+    },
+    { 
+        name: "Pansy",
+        scientific: "Viola tricolor",
+        benefit: "Helps reduce colds and sore throats"
+    },
+    { 
+        name: "Marjoram",
+        scientific: "Origanum majorana",
+        benefit: "Aids digestion, good for gut health"
+    },
+    { 
+        name: "Thyme",
+        scientific: "Thymus vulgaris",
+        benefit: "Natural antibiotic, boosts immunity"
+    },
+    { 
+        name: "Mint",
+        scientific: "Mentha spp.",
+        benefit: "Relieves digestive issues and headaches"
+    },
+    { 
+        name: "Lemon Balm",
+        scientific: "Melissa officinalis",
+        benefit: "Helps anxiety and boosts focus"
+    },
+    { 
+        name: "Fennel Flowers",
+        scientific: "Foeniculum vulgare",
+        benefit: "Supports digestion, high in fiber"
+    },
+    { 
+        name: "Basil (Purple & Sweet)",
+        scientific: "Ocimum basilicum",
+        benefit: "Anti-inflammatory, improves heart health"
+    },
+    { 
+        name: "Clover Blossoms",
+        scientific: "Trifolium pratense",
+        benefit: "Good for hormone balance"
+    },
+    { 
+        name: "Saffron",
+        scientific: "Crocus sativus",
+        benefit: "High in antioxidants, boosts mood"
+    },
+    { 
+        name: "Yarrow",
+        scientific: "Achillea millefolium",
+        benefit: "Aids wound healing, good for the immune system"
+    },
+    { 
+        name: "Peppermint",
+        scientific: "Mentha × piperita",
+        benefit: "Aids digestion and relieves nausea"
+    }
 ];
 
 // Render Edible Flowers
@@ -965,6 +1025,7 @@ function renderEdibleFlowers() {
                 ${additionalFlowers.map(flower => `
                     <div class="mini-flower-card">
                         <h4>✅ ${flower.name}</h4>
+                        <p class="scientific-name">${flower.scientific}</p>
                         <p>${flower.benefit}</p>
                     </div>
                 `).join('')}

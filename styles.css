@@ -1095,6 +1095,18 @@ footer {
     line-height: 1.4;
 }
 
+.mini-flower-card .scientific-name {
+    font-size: 0.85rem;
+    margin: 0.25rem 0;
+    color: var(--text-color);
+    font-style: italic;
+    opacity: 0.8;
+}
+
+.mini-flower-card p:not(.scientific-name) {
+    margin-top: 0.5rem;
+}
+
 .farming-strategy {
     margin-top: 4rem;
     padding: 2rem;
