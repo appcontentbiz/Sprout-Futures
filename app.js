@@ -151,6 +151,28 @@ const quickCrops = [
         description: 'Popular salad green with year-round demand',
         targets: ['Restaurants', 'Markets', 'Direct Sales'],
         icon: '🥬'
+    },
+    {
+        name: 'Baby Spinach',
+        type: 'Quick Harvest',
+        growTime: '25-35 days',
+        space: '75+ sq ft',
+        investment: '$800+',
+        monthlyProfit: '$1,200-$2,200',
+        description: 'High-value salad green with excellent nutritional profile',
+        targets: ['Health Food Stores', 'Restaurants', 'Farmers Markets'],
+        icon: '🍃'
+    },
+    {
+        name: 'Green Onions',
+        type: 'Continuous Harvest',
+        growTime: '21-28 days',
+        space: '50+ sq ft',
+        investment: '$400+',
+        monthlyProfit: '$600-$1,200',
+        description: 'Fast-growing herb with multiple harvests and low maintenance',
+        targets: ['Restaurants', 'Grocery Stores', 'Farmers Markets'],
+        icon: '🧅'
     }
 ];
 
@@ -308,6 +330,100 @@ const education = {
     ]
 };
 
+// Financial Stability Crops Data
+const stableCrops = [
+    {
+        name: 'Microgreens',
+        category: 'Quick Income',
+        profitPotential: 'Very High',
+        timeToProfit: 'Immediate',
+        markets: ['Restaurants', 'Markets', 'Online'],
+        details: 'High-value product with quick returns and premium pricing',
+        icon: '🌱'
+    },
+    {
+        name: 'Mushrooms',
+        category: 'Quick Income',
+        profitPotential: 'High',
+        timeToProfit: 'Short-term',
+        markets: ['Restaurants', 'Health Stores', 'Markets'],
+        details: 'Low cost to grow, high market price, continuous harvests',
+        icon: '🍄'
+    },
+    {
+        name: 'Garlic',
+        category: 'Mid-term',
+        profitPotential: 'High',
+        timeToProfit: 'Medium-term',
+        markets: ['Fresh Markets', 'Processing', 'Direct Sales'],
+        details: 'Premium prices for fresh and processed products',
+        icon: '🧄'
+    },
+    {
+        name: 'Herbs',
+        category: 'Quick Income',
+        profitPotential: 'High',
+        timeToProfit: 'Short-term',
+        markets: ['Restaurants', 'Markets', 'Direct Sales'],
+        details: 'Fast-growing, low maintenance, high-profit margins',
+        icon: '🌿'
+    },
+    {
+        name: 'Berries',
+        category: 'Long-term',
+        profitPotential: 'Very High',
+        timeToProfit: 'Long-term',
+        markets: ['Fresh Markets', 'Processing', 'Direct Sales'],
+        details: 'Multiple revenue streams: fresh, frozen, dried',
+        icon: '🫐'
+    },
+    {
+        name: 'Avocados',
+        category: 'Long-term',
+        profitPotential: 'Very High',
+        timeToProfit: 'Long-term',
+        markets: ['Fresh Markets', 'Restaurants', 'Export'],
+        details: 'High market value, especially for organic varieties',
+        icon: '🥑'
+    },
+    {
+        name: 'Pomegranates',
+        category: 'Long-term',
+        profitPotential: 'High',
+        timeToProfit: 'Long-term',
+        markets: ['Fresh Markets', 'Juice Industry', 'Export'],
+        details: 'Drought-tolerant with premium pricing potential',
+        icon: '🍎'
+    },
+    {
+        name: 'Leafy Greens',
+        category: 'Quick Income',
+        profitPotential: 'High',
+        timeToProfit: 'Short-term',
+        markets: ['Restaurants', 'Markets', 'CSA'],
+        details: 'Continuous harvest and high consumer demand',
+        icon: '🥬'
+    },
+    {
+        name: 'Exotic Fruits',
+        category: 'Mid-term',
+        profitPotential: 'Very High',
+        timeToProfit: 'Medium-term',
+        markets: ['Specialty Markets', 'Online', 'Direct Sales'],
+        details: 'Premium pricing in health-conscious markets',
+        icon: '🍈'
+    },
+    {
+        name: 'Hydroponic Vegetables',
+        category: 'Quick Income',
+        profitPotential: 'High',
+        timeToProfit: 'Short-term',
+        markets: ['Restaurants', 'Markets', 'Direct Sales'],
+        details: 'Higher yields and year-round production',
+        icon: '🥬'
+    }
+];
+
 // Populate nutritious crops
 function populateNutritiousCrops(category = 'vegetables') {
     const cropCategories = document.getElementById('cropCategories');
@@ -397,6 +513,76 @@ function populateEducation(type = 'degrees') {
         `;
         educationOptions.appendChild(card);
     });
+}
+
+// Render Financial Stability Section
+function renderFinancialStability() {
+    // Render main grid
+    const grid = document.getElementById('stableCropsGrid');
+    grid.innerHTML = stableCrops.map(crop => `
+        <div class="crop-card">
+            <div class="crop-header">
+                <span class="crop-icon">${crop.icon}</span>
+                <h3>${crop.name}</h3>
+            </div>
+            <div class="crop-details">
+                <p><strong>Category:</strong> ${crop.category}</p>
+                <p><strong>Profit Potential:</strong> ${crop.profitPotential}</p>
+                <p><strong>Time to Profit:</strong> ${crop.timeToProfit}</p>
+                <p><strong>Key Markets:</strong> ${crop.markets.join(', ')}</p>
+                <p>${crop.details}</p>
+            </div>
+        </div>
+    `).join('');
+
+    // Render winners sections
+    document.getElementById('shortTermWinners').innerHTML = `
+        <div class="winner-item">
+            <span class="winner-icon">🌱</span>
+            <p>Microgreens</p>
+        </div>
+        <div class="winner-item">
+            <span class="winner-icon">🍄</span>
+            <p>Mushrooms</p>
+        </div>
+    `;
+
+    document.getElementById('longTermWinners').innerHTML = `
+        <div class="winner-item">
+            <span class="winner-icon">🫐</span>
+            <p>Berries</p>
+        </div>
+        <div class="winner-item">
+            <span class="winner-icon">🧄</span>
+            <p>Garlic</p>
+        </div>
+        <div class="winner-item">
+            <span class="winner-icon">🥑</span>
+            <p>Avocados</p>
+        </div>
+    `;
+
+    // Render final strategy
+    document.getElementById('finalStrategy').innerHTML = `
+        <div class="strategy-steps">
+            <div class="strategy-step">
+                <span class="step-icon">1️⃣</span>
+                <p><strong>Start with Microgreens</strong> for immediate cash flow</p>
+            </div>
+            <div class="strategy-step">
+                <span class="step-icon">2️⃣</span>
+                <p><strong>Add Mushrooms</strong> for fast growth and high demand</p>
+            </div>
+            <div class="strategy-step">
+                <span class="step-icon">3️⃣</span>
+                <p><strong>Establish Garlic & Herbs</strong> for mid-term stability</p>
+            </div>
+            <div class="strategy-step">
+                <span class="step-icon">4️⃣</span>
+                <p><strong>Invest in Berries & Avocados</strong> for long-term growth & passive income</p>
+            </div>
+        </div>
+    `;
 }
 
 // Initialize ROI calculator
@@ -709,6 +895,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize all sections
     populateNutritiousCrops('vegetables');
     populateQuickCrops();
+    renderFinancialStability();
     populateEquipment('indoor');
     populateEducation('degrees');
     initializeCalculator();

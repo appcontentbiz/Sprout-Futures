@@ -444,6 +444,83 @@ select:focus, input:focus {
     margin-bottom: 1rem;
 }
 
+/* Financial Stability Section */
+.financial-stability-section {
+    padding: 2rem 0;
+}
+
+.winners-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.winner-category {
+    background: var(--light-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.winner-category h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.winner-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    background: white;
+    border-radius: 6px;
+}
+
+.winner-icon {
+    font-size: 1.5rem;
+}
+
+.strategy-section {
+    background: var(--light-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.strategy-section h3 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.strategy-steps {
+    display: grid;
+    gap: 1rem;
+}
+
+.strategy-step {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: white;
+    padding: 1rem;
+    border-radius: 6px;
+}
+
+.step-icon {
+    font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .winners-section {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Footer */
 footer {
     background: var(--light-bg);
