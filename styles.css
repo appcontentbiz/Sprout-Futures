@@ -612,6 +612,131 @@ select:focus, input:focus {
     }
 }
 
+/* Budget Recommendations Section */
+.budget-section {
+    padding: 2rem 0;
+}
+
+.budget-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.budget-tab {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    background: var(--light-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.budget-tab:hover {
+    background: var(--hover-bg);
+    transform: translateY(-2px);
+}
+
+.budget-tab.active {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.budget-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.budget-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.budget-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.budget-card h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.crops-list, .reasoning {
+    margin-bottom: 1.5rem;
+}
+
+.budget-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.budget-card li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.4;
+}
+
+.budget-card li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+
+.income-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.income-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: var(--light-bg);
+    border-radius: 6px;
+}
+
+.crop-name {
+    font-weight: 500;
+}
+
+.income-value {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .budget-tabs {
+        flex-direction: column;
+        padding: 0 1rem;
+    }
+
+    .budget-tab {
+        width: 100%;
+    }
+
+    .budget-grid {
+        padding: 0 1rem;
+    }
+}
+
 /* Footer */
 footer {
     background: var(--light-bg);

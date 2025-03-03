@@ -518,6 +518,99 @@ const marketingStrategies = {
     }
 };
 
+// Budget Recommendations Data
+const budgetRecommendations = {
+    small: {
+        title: "Small Budget (Under $5,000)",
+        bestCrops: ["Microgreens", "Mushrooms", "Garlic & Herbs"],
+        reasoning: "Low setup costs, quick returns, and minimal land requirements.",
+        strategy: [
+            "Start with microgreens (small space, fast cash flow)",
+            "Add mushrooms for high-value sales with minimal extra costs",
+            "Expand into garlic & herbs as capital grows",
+            "Sell at local farmers' markets, online, and directly to restaurants"
+        ],
+        projectedIncome: {
+            title: "Projected Income (Year 1)",
+            items: [
+                {
+                    crop: "Microgreens",
+                    income: "$5,000–$10,000/month"
+                },
+                {
+                    crop: "Mushrooms",
+                    income: "$2,000–$3,000/month"
+                },
+                {
+                    crop: "Garlic & Herbs",
+                    income: "$22,000–$50,000/year"
+                }
+            ]
+        }
+    },
+    medium: {
+        title: "Medium Budget ($10,000–$30,000)",
+        bestCrops: ["Microgreens", "Mushrooms", "Garlic & Herbs", "Berries"],
+        reasoning: "Adds long-term berry production for recurring income.",
+        strategy: [
+            "Start microgreens & mushrooms for quick cash flow",
+            "Plant garlic & herbs to expand into packaged seasonings/oils",
+            "Invest in berry bushes (¼ acre minimum) for long-term stability",
+            "Market through direct-to-consumer subscription boxes & wholesale grocery sales"
+        ],
+        projectedIncome: {
+            title: "Projected Income (Year 2–3)",
+            items: [
+                {
+                    crop: "Microgreens & Mushrooms",
+                    income: "$8,000–$15,000/month"
+                },
+                {
+                    crop: "Garlic & Herbs",
+                    income: "$30,000+/year"
+                },
+                {
+                    crop: "Berries",
+                    income: "$50,000+/year"
+                }
+            ]
+        }
+    },
+    high: {
+        title: "High Budget ($50,000+)",
+        bestCrops: ["Microgreens", "Mushrooms", "Garlic & Herbs", "Berries", "Avocados"],
+        reasoning: "Long-term investment with high revenue potential.",
+        strategy: [
+            "Scale microgreens/mushrooms to wholesale level",
+            "Grow garlic & herbs commercially (multiple acres)",
+            "Dedicate 1+ acres to berries & avocado trees",
+            "Sell value-added products (freeze-dried berries, avocado oil, herb-infused seasonings)",
+            "Market through grocery chains, large-scale food distributors, and direct-to-consumer online sales"
+        ],
+        projectedIncome: {
+            title: "Projected Income (Year 5+)",
+            items: [
+                {
+                    crop: "Microgreens/Mushrooms",
+                    income: "$10,000–$20,000/month"
+                },
+                {
+                    crop: "Garlic & Herbs",
+                    income: "$50,000–$100,000/year"
+                },
+                {
+                    crop: "Berries",
+                    income: "$100,000+/year"
+                },
+                {
+                    crop: "Avocados",
+                    income: "$50,000–$80,000/year"
+                }
+            ]
+        }
+    }
+};
+
 // Populate nutritious crops
 function populateNutritiousCrops(category = 'vegetables') {
     const cropCategories = document.getElementById('cropCategories');
@@ -713,6 +806,57 @@ function renderMarketingStrategies(crop = 'microgreens') {
     document.querySelectorAll('.tab-button').forEach(button => {
         button.classList.remove('active');
         if (button.dataset.crop === crop) {
+            button.classList.add('active');
+        }
+    });
+}
+
+// Render Budget Recommendations
+function renderBudgetRecommendations(budget = 'small') {
+    const content = document.getElementById('budgetContent');
+    const data = budgetRecommendations[budget];
+
+    content.innerHTML = `
+        <div class="budget-grid">
+            <div class="budget-card main-info">
+                <div class="budget-header">
+                    <h3>${data.title}</h3>
+                </div>
+                <div class="crops-list">
+                    <h4>🔹 Best Crops:</h4>
+                    <p>${data.bestCrops.join(', ')}</p>
+                </div>
+                <div class="reasoning">
+                    <h4>🔹 Why?</h4>
+                    <p>${data.reasoning}</p>
+                </div>
+            </div>
+
+            <div class="budget-card strategy">
+                <h4>🔹 Strategy:</h4>
+                <ul>
+                    ${data.strategy.map(item => `<li>${item}</li>`).join('')}
+                </ul>
+            </div>
+
+            <div class="budget-card income">
+                <h4>✅ ${data.projectedIncome.title}:</h4>
+                <div class="income-grid">
+                    ${data.projectedIncome.items.map(item => `
+                        <div class="income-item">
+                            <span class="crop-name">${item.crop}:</span>
+                            <span class="income-value">${item.income}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Update active tab
+    document.querySelectorAll('.budget-tab').forEach(button => {
+        button.classList.remove('active');
+        if (button.dataset.budget === budget) {
             button.classList.add('active');
         }
     });
@@ -1032,6 +1176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     populateEquipment('indoor');
     populateEducation('degrees');
     renderMarketingStrategies('microgreens');
+    renderBudgetRecommendations('small');
     initializeCalculator();
 
     // Tab buttons for nutritious crops
@@ -1065,6 +1210,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.marketing-tabs .tab-button').forEach(button => {
         button.addEventListener('click', () => {
             renderMarketingStrategies(button.dataset.crop);
+        });
+    });
+
+    // Budget tabs
+    document.querySelectorAll('.budget-tab').forEach(button => {
+        button.addEventListener('click', () => {
+            renderBudgetRecommendations(button.dataset.budget);
         });
     });
 
