@@ -424,6 +424,100 @@ const stableCrops = [
     }
 ];
 
+// Marketing Strategies Data
+const marketingStrategies = {
+    microgreens: {
+        title: "Microgreens (Fast Cash Flow)",
+        targetMarkets: [
+            "Restaurants & Chefs (fine dining, farm-to-table)",
+            "Farmers' Markets & Direct-to-Consumer",
+            "Juice Bars & Smoothie Shops",
+            "Grocery Stores (organic sections & specialty stores)",
+            "Health-Conscious Consumers (via online sales or local subscription boxes)"
+        ],
+        salesStrategy: [
+            "Offer free samples to local chefs—once they love it, they'll buy weekly",
+            "Sell directly to consumers via online orders or farmers' markets",
+            "Use a subscription box model (weekly deliveries of fresh greens)",
+            "Offer custom blends (e.g., spicy mix, salad mix) for restaurants",
+            "Start a CSA (Community Supported Agriculture) Microgreens Box at $25–$50 per month"
+        ],
+        valueAdded: [
+            "Pre-packaged salad kits (mix different greens)",
+            "Dehydrated microgreens for powders (high-nutrition add-ons for smoothies)",
+            "Subscription-based microgreens service for local families & fitness enthusiasts"
+        ]
+    },
+    mushrooms: {
+        title: "Mushrooms (Fast Growth & High Demand)",
+        targetMarkets: [
+            "Farmers' Markets & Direct-to-Consumer",
+            "Gourmet & Organic Grocery Stores",
+            "Health & Wellness Shops",
+            "Restaurants (especially Asian, vegan, and gourmet cuisines)",
+            "Supplement & Medicinal Markets (Lion's Mane & Reishi Mushrooms for brain health & immunity)"
+        ],
+        salesStrategy: [
+            "Approach high-end chefs & restaurants who pay premium prices for fresh mushrooms",
+            "Sell dried mushrooms (high demand for soup and supplement markets)",
+            "Offer pre-made mushroom grow kits for DIY mushroom growing at home",
+            "Use subscription models for dried or fresh mushrooms",
+            "Work with health & supplement stores for functional mushrooms (Reishi, Lion's Mane)"
+        ],
+        valueAdded: [
+            "Mushroom-based health supplements (powders, extracts, capsules)",
+            "Pre-packaged gourmet mushroom meal kits (think Blue Apron-style)",
+            "Mushroom-infused coffee or teas (huge wellness market trend)"
+        ]
+    },
+    garlic: {
+        title: "Garlic & Herbs (Mid-Term Stability)",
+        targetMarkets: [
+            "Grocery Stores (Organic & Specialty Sections)",
+            "Restaurants & Caterers",
+            "Herbal Medicine & Supplement Companies",
+            "Local Farmers' Markets & Subscription Boxes",
+            "Garlic Powder & Seasoning Companies"
+        ],
+        salesStrategy: [
+            "Bundle garlic & herb sales together—chefs love having a one-stop shop",
+            "Sell fresh, dried, and powdered garlic to maximize revenue",
+            "Offer small herb planters for direct-to-consumer sales",
+            "Develop DIY herb growing kits for people who want fresh herbs at home",
+            "Target gourmet seasoning companies who will buy in bulk"
+        ],
+        valueAdded: [
+            "Herb-infused oils & vinegars",
+            "Pre-mixed garlic seasoning blends",
+            "Dehydrated garlic for long shelf life & wider distribution",
+            "Pre-potted herbs for 'ready-to-use' fresh herb gardens at home"
+        ]
+    },
+    berries: {
+        title: "Berries & Avocados (Long-Term Stability & Passive Income)",
+        targetMarkets: [
+            "Grocery Stores (Organic & Conventional)",
+            "Smoothie Shops & Juice Bars",
+            "Frozen Fruit & Dried Fruit Manufacturers",
+            "Meal Kit Subscription Services",
+            "Bakeries & Dessert Shops"
+        ],
+        salesStrategy: [
+            "Partner with local smoothie shops & juice bars for fresh fruit supply contracts",
+            "Offer pre-packaged fresh & frozen berries for direct-to-consumer sales",
+            "Sell avocados wholesale to grocery chains & high-end restaurants",
+            "Use U-Pick Farm Experiences for agritourism revenue",
+            "Sell berry jams, dried berries, & frozen berry packs for year-round sales"
+        ],
+        valueAdded: [
+            "Premium cold-pressed avocado oil for high-end culinary use",
+            "Freeze-dried berries for snacks & baking",
+            "Avocado-based skincare products (moisturizers, hair treatments)",
+            "Berry-infused kombucha & health drinks"
+        ]
+    }
+};
+
 // Populate nutritious crops
 function populateNutritiousCrops(category = 'vegetables') {
     const cropCategories = document.getElementById('cropCategories');
@@ -583,6 +677,45 @@ function renderFinancialStability() {
             </div>
         </div>
     `;
+}
+
+// Render Marketing Strategies
+function renderMarketingStrategies(crop = 'microgreens') {
+    const content = document.getElementById('marketingContent');
+    const data = marketingStrategies[crop];
+
+    content.innerHTML = `
+        <div class="marketing-grid">
+            <div class="marketing-card">
+                <h3>✅ Best Customers to Target</h3>
+                <ul>
+                    ${data.targetMarkets.map(item => `<li>${item}</li>`).join('')}
+                </ul>
+            </div>
+            
+            <div class="marketing-card">
+                <h3>✅ Marketing & Sales Strategy</h3>
+                <ul>
+                    ${data.salesStrategy.map(item => `<li>${item}</li>`).join('')}
+                </ul>
+            </div>
+            
+            <div class="marketing-card">
+                <h3>✅ Value-Added Ideas</h3>
+                <ul>
+                    ${data.valueAdded.map(item => `<li>${item}</li>`).join('')}
+                </ul>
+            </div>
+        </div>
+    `;
+
+    // Update active tab
+    document.querySelectorAll('.tab-button').forEach(button => {
+        button.classList.remove('active');
+        if (button.dataset.crop === crop) {
+            button.classList.add('active');
+        }
+    });
 }
 
 // Initialize ROI calculator
@@ -898,6 +1031,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderFinancialStability();
     populateEquipment('indoor');
     populateEducation('degrees');
+    renderMarketingStrategies('microgreens');
     initializeCalculator();
 
     // Tab buttons for nutritious crops
@@ -924,6 +1058,13 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.education-tabs .tab-button').forEach(b => b.classList.remove('active'));
             e.target.classList.add('active');
             populateEducation(e.target.dataset.type);
+        });
+    });
+
+    // Marketing tabs
+    document.querySelectorAll('.marketing-tabs .tab-button').forEach(button => {
+        button.addEventListener('click', () => {
+            renderMarketingStrategies(button.dataset.crop);
         });
     });
 
