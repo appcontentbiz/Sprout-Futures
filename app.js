@@ -441,54 +441,67 @@ const equipment = {
 };
 
 // Education resources with links
-const education = {
+const educationResources = {
     degrees: [
         {
-            name: 'Oregon State University',
-            program: 'B.S. in Agricultural Sciences',
-            url: 'https://agsci.oregonstate.edu/degree/agricultural-sciences-bs',
-            icon: '🎓'
+            school: "Oregon State University",
+            program: "B.S. in Agricultural Sciences",
+            link: "#"
         },
         {
-            name: 'University of Massachusetts',
-            program: 'Sustainable Food & Farming',
-            url: 'https://stockbridge.cns.umass.edu/SFF-BS',
-            icon: '🎓'
+            school: "University of Massachusetts",
+            program: "Sustainable Food & Farming",
+            link: "#"
         },
         {
-            name: 'Texas Tech University',
-            program: 'Plant and Soil Science',
-            url: 'https://www.depts.ttu.edu/pss/',
-            icon: '🎓'
+            school: "Texas Tech University",
+            program: "Plant and Soil Science",
+            link: "#"
         },
         {
-            name: 'Colorado State University',
+            school: "Colorado State University",
             program: "Master's in Agriculture",
-            url: 'https://www.online.colostate.edu/degrees/agricultural-sciences/',
-            icon: '🎓'
+            link: "#"
         }
     ],
     certificates: [
         {
-            name: 'Cornell University',
-            program: 'Organic Agriculture Certificate',
-            url: 'https://cals.cornell.edu/education/degrees-programs/certificate-programs',
-            icon: '📜'
+            school: "Cornell University",
+            program: "Organic Agriculture Certificate",
+            link: "#"
         },
         {
-            name: 'Penn State',
-            program: 'Agricultural Business Management',
-            url: 'https://www.worldcampus.psu.edu/degrees-and-certificates/agricultural-business-management-certificate/overview',
-            icon: '📜'
+            school: "Penn State",
+            program: "Agricultural Business Management",
+            link: "#"
         },
         {
-            name: 'University of Florida',
-            program: 'Agronomy & Crop Production',
-            url: 'https://distance.ifas.ufl.edu/agriculture/',
-            icon: '📜'
+            school: "University of Florida",
+            program: "Agronomy & Crop Production",
+            link: "#"
         }
     ]
 };
+
+// Render Education Resources
+function renderEducationResources() {
+    const educationOptions = document.getElementById('educationOptions');
+    const activeType = document.querySelector('.education-tabs .tab-button.active').dataset.type;
+    
+    if (!educationOptions || !activeType) return;
+
+    educationOptions.innerHTML = educationResources[activeType]
+        .map(item => `
+            <div class="education-card">
+                <div class="education-header">
+                    <span class="education-icon">${activeType === 'degrees' ? '🎓' : '📜'}</span>
+                    <h3>${item.school}</h3>
+                </div>
+                <p class="program-name">${item.program}</p>
+                <a href="${item.link}" class="learn-more">Learn More →</a>
+            </div>
+        `).join('');
+}
 
 // Financial Stability Crops Data
 const stableCrops = [
@@ -1318,14 +1331,14 @@ function populateEducation(type = 'degrees') {
     const educationOptions = document.getElementById('educationOptions');
     educationOptions.innerHTML = '';
 
-    education[type].forEach(item => {
+    educationResources[type].forEach(item => {
         const card = document.createElement('div');
         card.className = 'education-card';
         card.innerHTML = `
-            <span class="education-icon">${item.icon}</span>
-            <h3>${item.name}</h3>
+            <span class="education-icon">${type === 'degrees' ? '🎓' : '📜'}</span>
+            <h3>${item.school}</h3>
             <p>${item.program}</p>
-            <a href="${item.url}" target="_blank" class="school-link">
+            <a href="${item.link}" target="_blank" class="school-link">
                 Learn More <i class="fas fa-external-link-alt"></i>
             </a>
         `;
