@@ -2044,7 +2044,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize all sections
     populateNutritiousCrops('vegetables');
     renderEdibleFlowers();
-    renderValueAddedProducts(); // Ensure this is called
+    renderValueAddedProducts();
     populateQuickCrops();
     populateEquipment('indoor');
     renderEducationResources();
@@ -2053,7 +2053,27 @@ document.addEventListener('DOMContentLoaded', () => {
     renderBudgetRecommendations('small');
     initializeCalculator();
 
-    // Event listeners
+    // Add event listeners for all interactive elements
+    
+    // Nutritious Crops tabs
+    document.querySelectorAll('.category-tabs .tab-button').forEach(button => {
+        button.addEventListener('click', (e) => {
+            document.querySelectorAll('.category-tabs .tab-button').forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            populateNutritiousCrops(e.target.dataset.category);
+        });
+    });
+
+    // Equipment toggle
+    document.querySelectorAll('.equipment-toggle .toggle-button').forEach(button => {
+        button.addEventListener('click', (e) => {
+            document.querySelectorAll('.equipment-toggle .toggle-button').forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            populateEquipment(e.target.dataset.type);
+        });
+    });
+
+    // Education tabs
     const educationTabs = document.querySelectorAll('.education-tabs .tab-button');
     educationTabs.forEach(tab => {
         tab.addEventListener('click', (e) => {
@@ -2062,4 +2082,25 @@ document.addEventListener('DOMContentLoaded', () => {
             renderEducationResources();
         });
     });
+
+    // Marketing tabs
+    document.querySelectorAll('.marketing-tabs .tab-button').forEach(button => {
+        button.addEventListener('click', (e) => {
+            document.querySelectorAll('.marketing-tabs .tab-button').forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            renderMarketingStrategies(e.target.dataset.crop);
+        });
+    });
+
+    // Budget tabs
+    document.querySelectorAll('.budget-tab').forEach(button => {
+        button.addEventListener('click', (e) => {
+            document.querySelectorAll('.budget-tab').forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            renderBudgetRecommendations(e.target.dataset.budget);
+        });
+    });
+
+    // ROI Calculator
+    document.getElementById('calculateROI')?.addEventListener('click', calculateROI);
 });
