@@ -677,7 +677,7 @@ const marketingStrategies = {
         ],
         salesStrategy: [
             "Partner with local smoothie shops & juice bars for fresh fruit supply contracts",
-            "Offer pre-packaged fresh & frozen berries for direct-to-consumer sales",
+            "Sell pre-packaged fresh & frozen berries for direct-to-consumer sales",
             "Sell avocados wholesale to grocery chains & high-end restaurants",
             "Use U-Pick Farm Experiences for agritourism revenue",
             "Sell berry jams, dried berries, & frozen berry packs for year-round sales"
@@ -1182,6 +1182,32 @@ const valueAddedProducts = {
     }
 };
 
+const tincturesInfo = {
+    title: "Making Herbal Tinctures",
+    icon: "🌿",
+    description: "A tincture is a concentrated herbal extract made by soaking plant material in alcohol or another solvent. The solvent extracts the active compounds from the plant, creating a potent liquid used for medicinal or therapeutic purposes.",
+    process: [
+        "Harvest the Plant Material – Fresh or dried herbs are used (e.g., chamomile, lavender, elderflower, moringa)",
+        "Soak in Alcohol or Solvent – Typically, high-proof alcohol (like vodka or brandy) is used, but glycerin (for alcohol-free tinctures) or apple cider vinegar can also work",
+        "Steep for Several Weeks – The mixture is stored in a glass jar for 2-6 weeks, shaken occasionally",
+        "Strain and Bottle – The liquid is filtered, leaving behind a highly concentrated herbal tincture"
+    ],
+    uses: [
+        {
+            category: "Medicinal",
+            examples: "Used for stress relief (lavender), sleep aid (chamomile), or immune support (elderflower, moringa)"
+        },
+        {
+            category: "Culinary",
+            examples: "Can be added to drinks, teas, or recipes for herbal flavoring"
+        },
+        {
+            category: "Skincare",
+            examples: "Used in organic beauty products for natural healing benefits"
+        }
+    ]
+};
+
 const profitabilityTips = [
     {
         channel: "Farmers' markets",
@@ -1242,7 +1268,37 @@ function renderValueAddedProducts() {
             </div>
         `).join('');
 
-    // Add profitability tips section
+    productsContainer.insertAdjacentHTML('beforeend', `
+        <div class="tinctures-section">
+            <div class="product-card tincture-card">
+                <div class="product-header">
+                    <span class="product-icon">${tincturesInfo.icon}</span>
+                    <div>
+                        <h3>${tincturesInfo.title}</h3>
+                    </div>
+                </div>
+                <div class="product-content">
+                    <p class="why-text">${tincturesInfo.description}</p>
+                    
+                    <h5>Process:</h5>
+                    <ol class="process-list">
+                        ${tincturesInfo.process.map(step => `<li>${step}</li>`).join('')}
+                    </ol>
+
+                    <h5>Uses:</h5>
+                    <div class="uses-grid">
+                        ${tincturesInfo.uses.map(use => `
+                            <div class="use-card">
+                                <h6>${use.category}</h6>
+                                <p>${use.examples}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `);
+
     productsContainer.insertAdjacentHTML('beforeend', `
         <div class="profitability-section">
             <h3>Maximizing Profitability</h3>
@@ -1263,7 +1319,6 @@ function renderValueAddedProducts() {
 function renderEdibleFlowers() {
     const flowersList = document.getElementById('topFlowersList');
     
-    // Render top 10 flowers with detailed cards
     const topFlowersHTML = edibleFlowers.map(flower => `
         <div class="flower-card">
             <div class="flower-header">
@@ -1293,7 +1348,6 @@ function renderEdibleFlowers() {
         </div>
     `).join('');
 
-    // Render additional flowers in a compact grid
     const additionalFlowersHTML = `
         <div class="additional-flowers">
             <h3>Other Nutritious Edible Flowers & Plants</h3>
@@ -1309,7 +1363,6 @@ function renderEdibleFlowers() {
         </div>
     `;
 
-    // Add financial section
     const financialHTML = `
         <div class="farming-strategy">
             <h2>🌿 Fastest-Growing & Most Financially Stable Edible Flowers & Plants</h2>
@@ -1395,7 +1448,6 @@ function populateNutritiousCrops(category = 'vegetables') {
     const cropList = document.getElementById('nutritiousCropsList');
     const crops = nutritiousCrops[category];
 
-    // Update active category
     cropCategories.querySelectorAll('button').forEach(button => {
         button.classList.remove('active');
         if (button.dataset.category === category) {
@@ -1403,7 +1455,6 @@ function populateNutritiousCrops(category = 'vegetables') {
         }
     });
 
-    // Populate crops
     cropList.innerHTML = crops.map(crop => `
         <div class="crop-card" data-crop="${crop.name.toLowerCase()}">
             <div class="crop-header">
@@ -1464,7 +1515,6 @@ function showGrowingInfo(cropName, category) {
 
     document.body.appendChild(modal);
 
-    // Close modal when clicking outside
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
             modal.remove();
@@ -1540,7 +1590,6 @@ function populateEducation(type = 'degrees') {
 
 // Render Financial Stability Section
 function renderFinancialStability() {
-    // Render main grid
     const grid = document.getElementById('stableCropsGrid');
     grid.innerHTML = stableCrops.map(crop => `
         <div class="crop-card">
@@ -1558,7 +1607,6 @@ function renderFinancialStability() {
         </div>
     `).join('');
 
-    // Render winners sections
     document.getElementById('shortTermWinners').innerHTML = `
         <div class="winner-item">
             <span class="winner-icon">🌱</span>
@@ -1585,7 +1633,6 @@ function renderFinancialStability() {
         </div>
     `;
 
-    // Render final strategy
     document.getElementById('finalStrategy').innerHTML = `
         <div class="strategy-steps">
             <div class="strategy-step">
@@ -1638,7 +1685,6 @@ function renderMarketingStrategies(crop = 'microgreens') {
         </div>
     `;
 
-    // Update active tab
     document.querySelectorAll('.tab-button').forEach(button => {
         button.classList.remove('active');
         if (button.dataset.crop === crop) {
@@ -1689,7 +1735,6 @@ function renderBudgetRecommendations(budget = 'small') {
         </div>
     `;
 
-    // Update active tab
     document.querySelectorAll('.budget-tab').forEach(button => {
         button.classList.remove('active');
         if (button.dataset.budget === budget) {
@@ -1742,7 +1787,6 @@ function calculateROI() {
 
 // Weather Integration
 async function getWeatherData(latitude, longitude) {
-    // Note: In production, use environment variables for API key
     const apiKey = 'YOUR_OPENWEATHERMAP_API_KEY';
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
     
@@ -1938,8 +1982,6 @@ class MarketPriceTracker {
     }
 
     async updatePrices() {
-        // Simulate real-time market data
-        // In production, this would fetch from an actual API
         const basePrice = {
             'Kale': 3.99,
             'Spinach': 2.99,
@@ -1954,8 +1996,7 @@ class MarketPriceTracker {
         };
 
         Object.entries(basePrice).forEach(([crop, price]) => {
-            // Add some random fluctuation
-            const fluctuation = (Math.random() - 0.5) * 0.4; // ±20% variation
+            const fluctuation = (Math.random() - 0.5) * 0.4; 
             this.prices.set(crop, +(price + fluctuation).toFixed(2));
         });
 
@@ -1967,12 +2008,8 @@ class MarketPriceTracker {
         const priceTracker = document.getElementById('marketPrices');
         if (!priceTracker) return;
 
-        let html = `
-            <h3>Current Market Prices</h3>
-            <p class="last-update">Last updated: ${this.lastUpdate.toLocaleString()}</p>
-            <div class="price-grid">
-        `;
-
+        let html = '<h3>Current Market Prices</h3>';
+        
         this.prices.forEach((price, crop) => {
             const previousPrice = this.getPreviousPrice(crop);
             const priceChange = price - previousPrice;
@@ -1997,7 +2034,6 @@ class MarketPriceTracker {
     }
 
     getPreviousPrice(crop) {
-        // Simulate previous price data
         const basePrice = this.prices.get(crop) || 0;
         return basePrice - (Math.random() - 0.5) * 0.2;
     }
@@ -2008,6 +2044,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize all sections
     populateNutritiousCrops('vegetables');
     renderEdibleFlowers();
+    renderValueAddedProducts(); // Ensure this is called
     populateQuickCrops();
     populateEquipment('indoor');
     renderEducationResources();
@@ -2016,7 +2053,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderBudgetRecommendations('small');
     initializeCalculator();
 
-    // Add event listeners for education tabs
+    // Event listeners
     const educationTabs = document.querySelectorAll('.education-tabs .tab-button');
     educationTabs.forEach(tab => {
         tab.addEventListener('click', (e) => {
