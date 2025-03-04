@@ -19,6 +19,7 @@
             <a href="#calculator">ROI Calculator</a>
             <a href="#financial-stability">Financial Stability</a>
             <a href="#edible-flowers">Edible Flowers</a>
+            <a href="#garden-planner">Garden Planning & Analytics</a>
         </div>
     </nav>
 
@@ -145,6 +146,117 @@
             </div>
         </section>
 
+        <section id="garden-planner" class="garden-planner-section">
+            <h2>Garden Planning & Analytics</h2>
+            <p class="section-subtitle">Plan, Track, and Optimize Your Garden's Success</p>
+
+            <div class="dashboard-tabs">
+                <button class="tab-button active" data-tab="journal">📔 Garden Journal</button>
+                <button class="tab-button" data-tab="planner">🌱 Visual Planner</button>
+                <button class="tab-button" data-tab="analytics">📊 Analytics</button>
+            </div>
+
+            <div class="dashboard-content">
+                <!-- Garden Journal Tab -->
+                <div id="journal-tab" class="tab-content active">
+                    <div class="journal-container">
+                        <div class="journal-sidebar">
+                            <div class="weather-widget">
+                                <h3>Local Weather</h3>
+                                <div id="weatherData"></div>
+                            </div>
+                            <div class="quick-entry">
+                                <h3>Quick Entry</h3>
+                                <button class="action-button" data-action="water">💧 Water</button>
+                                <button class="action-button" data-action="fertilize">🌿 Fertilize</button>
+                                <button class="action-button" data-action="harvest">🥬 Harvest</button>
+                                <button class="action-button" data-action="pest">🐛 Pest Spotted</button>
+                            </div>
+                        </div>
+                        <div class="journal-main">
+                            <div class="journal-header">
+                                <input type="date" id="entryDate">
+                                <button id="addEntry" class="cta-button">Add Entry</button>
+                            </div>
+                            <div id="journalEntries" class="journal-entries"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Planner Tab -->
+                <div id="planner-tab" class="tab-content">
+                    <div class="planner-container">
+                        <div class="planner-toolbar">
+                            <div class="tool-group">
+                                <button class="tool-button" data-tool="select">🖱️ Select</button>
+                                <button class="tool-button" data-tool="plant">🌱 Plant</button>
+                                <button class="tool-button" data-tool="erase">❌ Remove</button>
+                            </div>
+                            <div class="grid-controls">
+                                <label>Grid Size:</label>
+                                <select id="gridSize">
+                                    <option value="small">Small (10x10)</option>
+                                    <option value="medium">Medium (15x15)</option>
+                                    <option value="large">Large (20x20)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="planner-workspace">
+                            <div class="plant-palette">
+                                <h3>Plants</h3>
+                                <div id="plantList" class="plant-list"></div>
+                            </div>
+                            <div id="gardenGrid" class="garden-grid"></div>
+                            <div class="garden-info">
+                                <h3>Plot Information</h3>
+                                <div id="plotInfo"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analytics Tab -->
+                <div id="analytics-tab" class="tab-content">
+                    <div class="analytics-container">
+                        <div class="analytics-header">
+                            <div class="date-range">
+                                <label>Time Range:</label>
+                                <select id="timeRange">
+                                    <option value="week">Past Week</option>
+                                    <option value="month">Past Month</option>
+                                    <option value="season">This Season</option>
+                                    <option value="year">Past Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="analytics-grid">
+                            <div class="analytics-card">
+                                <h3>Yield Tracking</h3>
+                                <div id="yieldChart" class="chart"></div>
+                            </div>
+                            <div class="analytics-card">
+                                <h3>Growth Progress</h3>
+                                <div id="growthChart" class="chart"></div>
+                            </div>
+                            <div class="analytics-card">
+                                <h3>Weather Impact</h3>
+                                <div id="weatherChart" class="chart"></div>
+                            </div>
+                            <div class="analytics-card">
+                                <h3>Resource Usage</h3>
+                                <div id="resourceChart" class="chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tier-banner">
+                <p>🌟 Upgrade to Premium for automated logging, advanced analytics, and larger garden layouts!</p>
+                <button class="upgrade-button">Learn More</button>
+            </div>
+        </section>
+
         <section id="edible-flowers" class="section">
             <h2>Top 25 Nutritious & Healthy Edible Flowers and Plants</h2>
             <p class="section-subtitle">Ranked by Nutritional Value, Health Benefits & Farming Viability</p>
@@ -206,6 +318,7 @@
                 <a href="#calculator">ROI Calculator</a>
                 <a href="#financial-stability">Financial Stability</a>
                 <a href="#edible-flowers">Edible Flowers</a>
+                <a href="#garden-planner">Garden Planning & Analytics</a>
             </div>
             <div class="footer-section">
                 <h3>Contact</h3>
