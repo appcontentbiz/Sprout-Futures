@@ -1069,6 +1069,196 @@ const financiallyStableCrops = [
     }
 ];
 
+// Value-Added Products Data
+const valueAddedProducts = {
+    lavender: {
+        name: "Lavender",
+        scientific: "Lavandula spp.",
+        product: "Lavender-Infused Honey",
+        icon: "🍯",
+        why: "Lavender is widely used in aromatherapy, herbal remedies, and gourmet food production. Lavender honey is a luxury product with high market demand.",
+        ingredients: [
+            "1 cup dried organic lavender flowers",
+            "1 quart raw honey"
+        ],
+        process: [
+            "Place the dried lavender flowers in a clean, dry jar",
+            "Pour raw honey over the flowers, ensuring they are fully submerged",
+            "Seal the jar and let it infuse for 2–3 weeks in a warm, dark place, stirring occasionally",
+            "Strain the honey through cheesecloth into a clean jar"
+        ],
+        sellAt: ["Farmers' markets", "Specialty food stores", "Online gourmet shops"]
+    },
+    chamomile: {
+        name: "Chamomile",
+        scientific: "Matricaria chamomilla",
+        product: "Chamomile & Mint Sleep Tea",
+        icon: "🫖",
+        why: "Chamomile is known for its calming effects and is one of the most popular herbal teas.",
+        ingredients: [
+            "1 cup dried chamomile flowers",
+            "½ cup dried peppermint leaves",
+            "½ cup dried lemon balm"
+        ],
+        process: [
+            "Mix all dried herbs in a bowl",
+            "Store in airtight glass jars or paper tea bags",
+            "To brew, steep 1 tablespoon of the blend in hot water for 5 minutes"
+        ],
+        sellAt: ["Direct-to-consumer sales at farmers' markets", "Online shops", "Wellness subscription boxes"]
+    },
+    nasturtium: {
+        name: "Nasturtium",
+        scientific: "Tropaeolum majus",
+        product: "Nasturtium Leaf & Flower Pesto",
+        icon: "🌿",
+        why: "Nasturtium has a peppery, spicy flavor that makes it a unique ingredient in gourmet sauces.",
+        ingredients: [
+            "2 cups fresh nasturtium leaves",
+            "½ cup fresh nasturtium flowers",
+            "½ cup olive oil",
+            "¼ cup pine nuts or walnuts",
+            "1 clove garlic",
+            "½ cup grated Parmesan cheese"
+        ],
+        process: [
+            "Blend all ingredients in a food processor until smooth",
+            "Store in glass jars and refrigerate"
+        ],
+        sellAt: ["High-end grocery stores", "Online specialty food shops", "Direct farm sales"]
+    },
+    elderflower: {
+        name: "Elderflower",
+        scientific: "Sambucus nigra",
+        product: "Elderflower Syrup",
+        icon: "🥤",
+        why: "Elderflower syrup is a luxury ingredient in cocktails, lemonades, and desserts.",
+        ingredients: [
+            "20 fresh elderflower clusters",
+            "4 cups water",
+            "4 cups sugar",
+            "2 organic lemons, sliced"
+        ],
+        process: [
+            "Boil water and dissolve sugar to make a syrup",
+            "Add elderflowers and lemon slices, then let steep overnight",
+            "Strain and bottle in sterilized glass bottles"
+        ],
+        sellAt: ["Beverage companies", "Gourmet food stores", "Online specialty retailers"]
+    },
+    moringa: {
+        name: "Moringa",
+        scientific: "Moringa oleifera",
+        product: "Moringa Leaf Powder",
+        icon: "🍃",
+        why: "Moringa is a superfood packed with vitamins and minerals.",
+        ingredients: [
+            "Fresh moringa leaves"
+        ],
+        process: [
+            "Harvest and wash fresh moringa leaves",
+            "Dry in a dehydrator or air-dry in a shaded area",
+            "Grind into a fine powder using a food processor or spice grinder",
+            "Store in airtight containers"
+        ],
+        sellAt: ["Online health stores", "Direct-to-consumer", "Supplement manufacturers"]
+    },
+    saffron: {
+        name: "Saffron",
+        scientific: "Crocus sativus",
+        product: "Saffron Face Oil",
+        icon: "✨",
+        why: "Saffron is prized for its antioxidant properties and is used in luxury skincare.",
+        ingredients: [
+            "1 gram saffron threads",
+            "1 cup jojoba or sweet almond oil"
+        ],
+        process: [
+            "Crush saffron threads and add to oil",
+            "Let infuse in a sealed jar for 2–4 weeks in a dark place",
+            "Strain and bottle"
+        ],
+        sellAt: ["Online beauty retailers", "High-end wellness boutiques", "Direct sales"]
+    }
+};
+
+const profitabilityTips = [
+    {
+        channel: "Farmers' markets",
+        description: "Sell small-batch artisanal products",
+        icon: "🏪"
+    },
+    {
+        channel: "E-commerce platforms",
+        description: "Reach global buyers through Etsy, Shopify",
+        icon: "🌐"
+    },
+    {
+        channel: "Wholesale distribution",
+        description: "Partner with specialty retailers",
+        icon: "📦"
+    },
+    {
+        channel: "Subscription boxes",
+        description: "Offer seasonal farm-based products",
+        icon: "📬"
+    }
+];
+
+// Render Value-Added Products
+function renderValueAddedProducts() {
+    const productsContainer = document.getElementById('valueAddedProducts');
+    if (!productsContainer) return;
+
+    productsContainer.innerHTML = Object.values(valueAddedProducts)
+        .map(product => `
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-icon">${product.icon}</span>
+                    <div>
+                        <h3>${product.name}</h3>
+                        <p class="scientific-name">${product.scientific}</p>
+                    </div>
+                </div>
+                <div class="product-content">
+                    <h4>${product.product}</h4>
+                    <p class="why-text">${product.why}</p>
+                    
+                    <h5>Ingredients:</h5>
+                    <ul class="ingredients-list">
+                        ${product.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+                    </ul>
+
+                    <h5>Process:</h5>
+                    <ol class="process-list">
+                        ${product.process.map(step => `<li>${step}</li>`).join('')}
+                    </ol>
+
+                    <h5>Where to Sell:</h5>
+                    <ul class="sell-at-list">
+                        ${product.sellAt.map(place => `<li>${place}</li>`).join('')}
+                    </ul>
+                </div>
+            </div>
+        `).join('');
+
+    // Add profitability tips section
+    productsContainer.insertAdjacentHTML('beforeend', `
+        <div class="profitability-section">
+            <h3>Maximizing Profitability</h3>
+            <div class="tips-grid">
+                ${profitabilityTips.map(tip => `
+                    <div class="tip-card">
+                        <span class="tip-icon">${tip.icon}</span>
+                        <h4>${tip.channel}</h4>
+                        <p>${tip.description}</p>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `);
+}
+
 // Render Edible Flowers
 function renderEdibleFlowers() {
     const flowersList = document.getElementById('topFlowersList');
@@ -1178,15 +1368,17 @@ function renderEdibleFlowers() {
                     <div class="strategy-card">
                         <h4>📌 If You Want Quick Income:</h4>
                         <ul>
-                            <li>Start with microgreens, mushrooms, nasturtium, and chamomile (low-cost, fast growth).</li>
-                            <li>Sell directly to local markets, chefs, and herbalists.</li>
+                            <li>Start with microgreens (small space, fast cash flow)</li>
+                            <li>Add mushrooms for high-value sales with minimal extra costs</li>
+                            <li>Expand into garlic & herbs as capital grows</li>
+                            <li>Sell at local farmers' markets, online, and directly to restaurants</li>
                         </ul>
                     </div>
                     <div class="strategy-card">
                         <h4>📌 For High Profits & Sustainability:</h4>
                         <ul>
-                            <li>Invest in saffron, lavender, elderflower, and moringa for long-term income.</li>
-                            <li>Build partnerships with skincare, herbal medicine, and gourmet food companies.</li>
+                            <li>Invest in saffron, lavender, elderflower, and moringa for long-term income</li>
+                            <li>Build partnerships with skincare, herbal medicine, and gourmet food companies</li>
                         </ul>
                     </div>
                 </div>
