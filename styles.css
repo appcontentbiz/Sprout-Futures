@@ -1539,22 +1539,63 @@ footer {
     display: block;
 }
 
-/* Garden Grid Cells */
+/* Enhanced Plant List Items */
+.plant-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.plant-item.selected {
+    background: #dcfce7;
+    border-color: #22c55e;
+}
+
+.plant-item:hover .plant-info {
+    display: block;
+}
+
+.plant-info {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 200px;
+    padding: 0.75rem;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    font-size: 0.875rem;
+    color: #374151;
+}
+
+/* Enhanced Grid Cells */
 .grid-cell {
     aspect-ratio: 1;
     border: 1px solid #e5e7eb;
     background: white;
     cursor: pointer;
     transition: all 0.2s ease;
+    position: relative;
 }
 
-.grid-cell:hover {
-    background: #f3f4f6;
-}
-
-.grid-cell.drag-over {
+.grid-cell.hover-plant {
     background: #dcfce7;
-    border: 2px dashed #22c55e;
+    border-color: #22c55e;
+}
+
+.grid-cell.hover-erase {
+    background: #fee2e2;
+    border-color: #ef4444;
 }
 
 .planted-item {
@@ -1564,28 +1605,151 @@ footer {
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
+    position: relative;
 }
 
-/* Plant List Items */
-.plant-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+.planted-item:hover .plant-tooltip {
+    display: block;
+}
+
+.plant-tooltip {
+    display: none;
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
     padding: 0.5rem;
     background: white;
     border: 1px solid #e5e7eb;
     border-radius: 6px;
-    cursor: grab;
-    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 0.75rem;
+    white-space: nowrap;
+    z-index: 20;
 }
 
-.plant-item:hover {
+/* Plant Detail Card */
+.plant-detail-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.plant-detail-card h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    color: #111827;
+}
+
+.plant-detail-card p {
+    margin: 0.25rem 0;
+    color: #374151;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #f3f4f6;
+    border-radius: 4px;
+    margin-top: 0.75rem;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: #22c55e;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* Enhanced Chart Styles */
+.chart-container {
+    height: 100%;
+    padding: 1.5rem 1rem 0.5rem;
+}
+
+.chart-bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 200px;
+    width: 100%;
+}
+
+.chart-bar-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.chart-bar {
+    width: 100%;
+    max-width: 40px;
+    background: #22c55e;
+    border-radius: 4px 4px 0 0;
+    transition: height 0.3s ease;
+    position: relative;
+}
+
+.chart-bar:hover {
+    background: #15803d;
+}
+
+.chart-value {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    color: #374151;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.chart-bar:hover .chart-value {
+    opacity: 1;
+}
+
+.chart-label {
+    font-size: 0.75rem;
+    color: #6b7280;
+    text-align: center;
+}
+
+.chart-title {
+    text-align: center;
+    margin-top: 1rem;
+    color: #374151;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Tool Buttons */
+.tool-button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tool-button.active {
+    background: #22c55e;
+    color: white;
+    border-color: #22c55e;
+}
+
+.tool-button:hover:not(.active) {
     background: #f3f4f6;
     transform: translateY(-1px);
-}
-
-.plant-icon {
-    font-size: 1.25rem;
 }
 
 /* Journal Entries */
@@ -1640,112 +1804,6 @@ footer {
 .entry-textarea:focus {
     outline: none;
     background: #f8faf9;
-}
-
-/* Chart Styles */
-.chart-container {
-    height: 100%;
-    display: flex;
-    align-items: flex-end;
-    gap: 4px;
-    padding: 1rem;
-}
-
-.chart-bars {
-    display: flex;
-    align-items: flex-end;
-    gap: 4px;
-    height: 200px;
-    width: 100%;
-}
-
-.chart-bar {
-    flex: 1;
-    background: #22c55e;
-    border-radius: 4px 4px 0 0;
-    transition: height 0.3s ease;
-}
-
-.chart-bar:hover {
-    background: #15803d;
-}
-
-.chart-label {
-    text-align: center;
-    margin-top: 0.5rem;
-    color: #374151;
-    font-size: 0.875rem;
-}
-
-/* Plot Information */
-.plot-item {
-    padding: 0.75rem;
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 6px;
-    margin-bottom: 0.5rem;
-}
-
-.plot-detail {
-    display: block;
-    font-size: 0.875rem;
-    color: #6b7280;
-    margin-top: 0.25rem;
-}
-
-/* Journal Styles */
-.journal-container {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 2rem;
-    background: white;
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.journal-sidebar {
-    border-right: 1px solid #e5e7eb;
-    padding-right: 1.5rem;
-}
-
-.weather-widget, .quick-entry {
-    background: #f8faf9;
-    border-radius: 8px;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.action-button {
-    display: block;
-    width: 100%;
-    padding: 0.75rem;
-    margin: 0.5rem 0;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    background: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.action-button:hover {
-    background: #f3f4f6;
-    transform: translateY(-1px);
-}
-
-.journal-main {
-    flex: 1;
-}
-
-.journal-header {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.journal-entries {
-    max-height: 600px;
-    overflow-y: auto;
 }
 
 /* Visual Planner Styles */

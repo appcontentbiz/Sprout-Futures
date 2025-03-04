@@ -1234,15 +1234,16 @@ const profitabilityTips = [
 // Garden Planning & Analytics Data
 const gardenPlannerData = {
     plants: [
-        { id: 'tomato', name: 'Tomato', icon: '🍅', spacing: 2, maturityDays: 80 },
-        { id: 'lettuce', name: 'Lettuce', icon: '🥬', spacing: 1, maturityDays: 45 },
-        { id: 'carrot', name: 'Carrot', icon: '🥕', spacing: 1, maturityDays: 70 },
-        { id: 'pepper', name: 'Pepper', icon: '🫑', spacing: 2, maturityDays: 75 },
-        { id: 'cucumber', name: 'Cucumber', icon: '🥒', spacing: 2, maturityDays: 60 },
-        { id: 'herbs', name: 'Herbs', icon: '🌿', spacing: 1, maturityDays: 40 }
+        { id: 'tomato', name: 'Tomato', icon: '🍅', spacing: 2, maturityDays: 80, yield: { weekly: [2, 3, 4, 5, 4, 3], monthly: [8, 12, 15, 18, 14, 10], seasonal: [25, 45, 35, 20], yearly: [125, 140, 110, 95] } },
+        { id: 'lettuce', name: 'Lettuce', icon: '🥬', spacing: 1, maturityDays: 45, yield: { weekly: [1, 2, 2, 1, 2, 1], monthly: [5, 7, 8, 6, 7, 5], seasonal: [15, 25, 20, 15], yearly: [75, 85, 70, 65] } },
+        { id: 'carrot', name: 'Carrot', icon: '🥕', spacing: 1, maturityDays: 70, yield: { weekly: [3, 4, 3, 4, 3, 4], monthly: [12, 15, 14, 13, 12, 11], seasonal: [35, 45, 40, 30], yearly: [150, 165, 140, 130] } },
+        { id: 'pepper', name: 'Pepper', icon: '🫑', spacing: 2, maturityDays: 75, yield: { weekly: [1, 2, 3, 2, 1, 2], monthly: [6, 8, 10, 9, 7, 6], seasonal: [20, 30, 25, 15], yearly: [90, 100, 85, 75] } },
+        { id: 'cucumber', name: 'Cucumber', icon: '🥒', spacing: 2, maturityDays: 60, yield: { weekly: [2, 3, 4, 3, 2, 3], monthly: [10, 12, 14, 13, 11, 9], seasonal: [30, 40, 35, 25], yearly: [130, 145, 120, 110] } },
+        { id: 'herbs', name: 'Herbs', icon: '🌿', spacing: 1, maturityDays: 40, yield: { weekly: [1, 1, 2, 1, 1, 1], monthly: [4, 5, 6, 5, 4, 3], seasonal: [12, 18, 15, 10], yearly: [55, 65, 50, 45] } }
     ],
     journalEntries: [],
     gardenLayout: [],
+    currentTool: 'plant',
     analytics: {
         yields: [],
         growth: [],
@@ -1250,6 +1251,242 @@ const gardenPlannerData = {
         resources: []
     }
 };
+
+// Enhanced Garden Planner Functions
+function initializeGardenPlanner() {
+    const gridSize = document.getElementById('gridSize');
+    const gardenGrid = document.getElementById('gardenGrid');
+    const plantList = document.getElementById('plantList');
+    const tools = document.querySelectorAll('.tool-button');
+    
+    if (plantList) {
+        plantList.innerHTML = gardenPlannerData.plants.map(plant => `
+            <div class="plant-item" data-plant="${plant.id}">
+                <span class="plant-icon">${plant.icon}</span>
+                <span class="plant-name">${plant.name}</span>
+                <span class="plant-info">
+                    Spacing: ${plant.spacing}x${plant.spacing}
+                    <br>
+                    Days to harvest: ${plant.maturityDays}
+                </span>
+            </div>
+        `).join('');
+
+        // Add click event for plant selection
+        plantList.querySelectorAll('.plant-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                plantList.querySelectorAll('.plant-item').forEach(p => p.classList.remove('selected'));
+                item.classList.add('selected');
+                gardenPlannerData.selectedPlant = item.dataset.plant;
+            });
+        });
+    }
+
+    if (gridSize) {
+        gridSize.addEventListener('change', (e) => {
+            const size = e.target.value;
+            createGardenGrid(size);
+        });
+    }
+
+    tools.forEach(tool => {
+        tool.addEventListener('click', (e) => {
+            tools.forEach(t => t.classList.remove('active'));
+            e.target.classList.add('active');
+            gardenPlannerData.currentTool = e.target.dataset.tool;
+        });
+    });
+
+    // Initialize with small grid and plant tool
+    createGardenGrid('small');
+    gardenPlannerData.currentTool = 'plant';
+    document.querySelector('[data-tool="plant"]')?.classList.add('active');
+}
+
+function createGardenGrid(size) {
+    const grid = document.getElementById('gardenGrid');
+    if (!grid) return;
+
+    const sizes = {
+        small: 10,
+        medium: 15,
+        large: 20
+    };
+
+    const gridSize = sizes[size] || 10;
+    grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+    grid.innerHTML = '';
+
+    for (let i = 0; i < gridSize * gridSize; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'grid-cell';
+        cell.dataset.index = i;
+        
+        // Add click handler for each cell
+        cell.addEventListener('click', () => handleGridCellClick(cell));
+        
+        // Add hover effect
+        cell.addEventListener('mouseenter', () => {
+            if (gardenPlannerData.currentTool === 'plant' && gardenPlannerData.selectedPlant) {
+                cell.classList.add('hover-plant');
+            } else if (gardenPlannerData.currentTool === 'erase') {
+                cell.classList.add('hover-erase');
+            }
+        });
+        
+        cell.addEventListener('mouseleave', () => {
+            cell.classList.remove('hover-plant', 'hover-erase');
+        });
+        
+        grid.appendChild(cell);
+    }
+}
+
+function handleGridCellClick(cell) {
+    switch (gardenPlannerData.currentTool) {
+        case 'plant':
+            if (gardenPlannerData.selectedPlant) {
+                const plant = gardenPlannerData.plants.find(p => p.id === gardenPlannerData.selectedPlant);
+                if (plant) {
+                    cell.innerHTML = `
+                        <div class="planted-item" data-plant="${plant.id}">
+                            ${plant.icon}
+                            <div class="plant-tooltip">
+                                ${plant.name}<br>
+                                Harvest in ${plant.maturityDays} days
+                            </div>
+                        </div>
+                    `;
+                    cell.dataset.plant = plant.id;
+                    cell.dataset.plantDate = new Date().toISOString();
+                }
+            }
+            break;
+        case 'erase':
+            cell.innerHTML = '';
+            delete cell.dataset.plant;
+            delete cell.dataset.plantDate;
+            break;
+        case 'select':
+            if (cell.dataset.plant) {
+                showPlantDetails(cell);
+            }
+            break;
+    }
+    updatePlotInfo();
+}
+
+function showPlantDetails(cell) {
+    const plantId = cell.dataset.plant;
+    const plant = gardenPlannerData.plants.find(p => p.id === plantId);
+    const plantDate = new Date(cell.dataset.plantDate);
+    const daysGrowing = Math.floor((new Date() - plantDate) / (1000 * 60 * 60 * 24));
+    const daysRemaining = Math.max(0, plant.maturityDays - daysGrowing);
+    
+    const plotInfo = document.getElementById('plotInfo');
+    if (plotInfo && plant) {
+        plotInfo.innerHTML = `
+            <div class="plant-detail-card">
+                <h4>${plant.icon} ${plant.name}</h4>
+                <p>Planted: ${plantDate.toLocaleDateString()}</p>
+                <p>Days growing: ${daysGrowing}</p>
+                <p>Days until harvest: ${daysRemaining}</p>
+                <div class="progress-bar">
+                    <div class="progress" style="width: ${(daysGrowing / plant.maturityDays) * 100}%"></div>
+                </div>
+            </div>
+        `;
+    }
+}
+
+// Enhanced Analytics Functions
+function initializeAnalytics() {
+    const timeRange = document.getElementById('timeRange');
+    if (timeRange) {
+        timeRange.addEventListener('change', () => {
+            renderAnalytics(timeRange.value);
+        });
+    }
+    renderAnalytics('week'); // Default to weekly view
+}
+
+function renderAnalytics(timeRange = 'week') {
+    const ranges = {
+        week: 'weekly',
+        month: 'monthly',
+        season: 'seasonal',
+        year: 'yearly'
+    };
+    
+    const range = ranges[timeRange];
+    
+    // Calculate total yields for each plant
+    const yields = gardenPlannerData.plants.reduce((acc, plant) => {
+        plant.yield[range].forEach((value, index) => {
+            acc[index] = (acc[index] || 0) + value;
+        });
+        return acc;
+    }, []);
+
+    // Generate growth data (percentage of plants at each growth stage)
+    const growth = gardenPlannerData.plants.map(plant => 
+        plant.yield[range].map(y => Math.round((y / Math.max(...plant.yield[range])) * 100))
+    ).reduce((acc, val) => val.map((v, i) => (acc[i] || 0) + v), [])
+    .map(v => Math.round(v / gardenPlannerData.plants.length));
+
+    // Sample weather data (temperature variations)
+    const weatherData = {
+        weekly: [18, 20, 22, 21, 19, 20],
+        monthly: [15, 18, 22, 25, 23, 20],
+        seasonal: [12, 22, 28, 15],
+        yearly: [10, 22, 25, 15]
+    };
+
+    // Resource usage data (water, fertilizer, etc.)
+    const resourceData = {
+        weekly: [85, 80, 90, 85, 80, 85],
+        monthly: [75, 85, 90, 88, 82, 80],
+        seasonal: [70, 90, 85, 75],
+        yearly: [65, 85, 80, 70]
+    };
+
+    renderChart('yieldChart', 'Yield (lbs)', yields, timeRange);
+    renderChart('growthChart', 'Growth Rate (%)', growth, timeRange);
+    renderChart('weatherChart', 'Temperature (°C)', weatherData[range], timeRange);
+    renderChart('resourceChart', 'Resource Usage (%)', resourceData[range], timeRange);
+}
+
+function renderChart(elementId, label, data, timeRange) {
+    const element = document.getElementById(elementId);
+    if (!element) return;
+
+    const periods = {
+        week: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        month: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
+        season: ['Early', 'Mid', 'Late', 'End'],
+        year: ['Q1', 'Q2', 'Q3', 'Q4']
+    };
+
+    const max = Math.max(...data);
+    const bars = data.map((value, index) => {
+        const height = (value / max) * 100;
+        return `
+            <div class="chart-bar-container">
+                <div class="chart-bar" style="height: ${height}%;" title="${value} ${label}">
+                    <span class="chart-value">${value}</span>
+                </div>
+                <span class="chart-label">${periods[timeRange][index]}</span>
+            </div>
+        `;
+    }).join('');
+
+    element.innerHTML = `
+        <div class="chart-container">
+            <div class="chart-bars">${bars}</div>
+        </div>
+        <div class="chart-title">${label}</div>
+    `;
+}
 
 // Garden Journal Functions
 function initializeGardenJournal() {
@@ -1310,168 +1547,6 @@ function renderJournalEntries() {
             gardenPlannerData.journalEntries[index].content = e.target.value;
         });
     });
-}
-
-// Garden Planner Functions
-function initializeGardenPlanner() {
-    const gridSize = document.getElementById('gridSize');
-    const gardenGrid = document.getElementById('gardenGrid');
-    const plantList = document.getElementById('plantList');
-    const tools = document.querySelectorAll('.tool-button');
-    
-    if (plantList) {
-        plantList.innerHTML = gardenPlannerData.plants.map(plant => `
-            <div class="plant-item" draggable="true" data-plant="${plant.id}">
-                <span class="plant-icon">${plant.icon}</span>
-                <span class="plant-name">${plant.name}</span>
-            </div>
-        `).join('');
-    }
-
-    if (gridSize) {
-        gridSize.addEventListener('change', (e) => {
-            const size = e.target.value;
-            createGardenGrid(size);
-        });
-    }
-
-    tools.forEach(tool => {
-        tool.addEventListener('click', (e) => {
-            tools.forEach(t => t.classList.remove('active'));
-            e.target.classList.add('active');
-        });
-    });
-
-    // Initialize with small grid
-    createGardenGrid('small');
-}
-
-function createGardenGrid(size) {
-    const grid = document.getElementById('gardenGrid');
-    if (!grid) return;
-
-    const sizes = {
-        small: 10,
-        medium: 15,
-        large: 20
-    };
-
-    const gridSize = sizes[size] || 10;
-    grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
-    grid.innerHTML = '';
-
-    for (let i = 0; i < gridSize * gridSize; i++) {
-        const cell = document.createElement('div');
-        cell.className = 'grid-cell';
-        cell.dataset.index = i;
-        grid.appendChild(cell);
-    }
-
-    // Add drag and drop functionality
-    setupDragAndDrop();
-}
-
-function setupDragAndDrop() {
-    const plantItems = document.querySelectorAll('.plant-item');
-    const gridCells = document.querySelectorAll('.grid-cell');
-
-    plantItems.forEach(item => {
-        item.addEventListener('dragstart', (e) => {
-            e.dataTransfer.setData('text/plain', e.target.dataset.plant);
-        });
-    });
-
-    gridCells.forEach(cell => {
-        cell.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            cell.classList.add('drag-over');
-        });
-
-        cell.addEventListener('dragleave', (e) => {
-            cell.classList.remove('drag-over');
-        });
-
-        cell.addEventListener('drop', (e) => {
-            e.preventDefault();
-            const plantId = e.dataTransfer.getData('text/plain');
-            const plant = gardenPlannerData.plants.find(p => p.id === plantId);
-            if (plant) {
-                cell.innerHTML = `<div class="planted-item">${plant.icon}</div>`;
-                cell.dataset.plant = plantId;
-            }
-            cell.classList.remove('drag-over');
-            updatePlotInfo();
-        });
-    });
-}
-
-function updatePlotInfo() {
-    const plotInfo = document.getElementById('plotInfo');
-    if (!plotInfo) return;
-
-    const plantedItems = document.querySelectorAll('.grid-cell[data-plant]');
-    const plantCounts = {};
-
-    plantedItems.forEach(item => {
-        const plantId = item.dataset.plant;
-        plantCounts[plantId] = (plantCounts[plantId] || 0) + 1;
-    });
-
-    const infoHtml = Object.entries(plantCounts).map(([plantId, count]) => {
-        const plant = gardenPlannerData.plants.find(p => p.id === plantId);
-        return `
-            <div class="plot-item">
-                <span>${plant.icon} ${plant.name}: ${count}</span>
-                <span class="plot-detail">Expected harvest: ${new Date(Date.now() + plant.maturityDays * 24 * 60 * 60 * 1000).toLocaleDateString()}</span>
-            </div>
-        `;
-    }).join('');
-
-    plotInfo.innerHTML = infoHtml || '<p>No plants in garden yet</p>';
-}
-
-// Analytics Functions
-function initializeAnalytics() {
-    const timeRange = document.getElementById('timeRange');
-    if (timeRange) {
-        timeRange.addEventListener('change', renderAnalytics);
-    }
-    renderAnalytics();
-}
-
-function renderAnalytics() {
-    // For demo purposes, generate some sample data
-    const sampleData = {
-        yields: [10, 15, 8, 12, 20, 18],
-        growth: [80, 85, 90, 75, 95, 88],
-        weather: [25, 24, 26, 23, 25, 27],
-        resources: [100, 90, 85, 95, 88, 92]
-    };
-
-    // Render charts using sample data
-    renderChart('yieldChart', 'Yield (lbs)', sampleData.yields);
-    renderChart('growthChart', 'Growth Rate (%)', sampleData.growth);
-    renderChart('weatherChart', 'Temperature (°C)', sampleData.weather);
-    renderChart('resourceChart', 'Resource Usage (%)', sampleData.resources);
-}
-
-function renderChart(elementId, label, data) {
-    const element = document.getElementById(elementId);
-    if (!element) return;
-
-    // Simple bar chart representation
-    const max = Math.max(...data);
-    const bars = data.map(value => {
-        const height = (value / max) * 100;
-        return `<div class="chart-bar" style="height: ${height}%;" title="${value} ${label}"></div>`;
-    }).join('');
-
-    element.innerHTML = `
-        <div class="chart-container">
-            <div class="chart-bars">${bars}</div>
-        </div>
-        <div class="chart-label">${label}</div>
-    `;
 }
 
 // Tab Switching
