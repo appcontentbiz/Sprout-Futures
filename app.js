@@ -1815,95 +1815,22 @@ class MarketPriceTracker {
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize all sections
     populateNutritiousCrops('vegetables');
+    renderEdibleFlowers();
     populateQuickCrops();
-    renderFinancialStability();
     populateEquipment('indoor');
+    renderEducationResources();
+    renderFinancialStability();
     renderMarketingStrategies('microgreens');
     renderBudgetRecommendations('small');
-    renderEdibleFlowers();
     initializeCalculator();
 
-    // Tab buttons for nutritious crops
-    document.querySelectorAll('.category-tabs .tab-button').forEach(button => {
-        button.addEventListener('click', (e) => {
-            document.querySelectorAll('.category-tabs .tab-button').forEach(b => b.classList.remove('active'));
+    // Add event listeners for education tabs
+    const educationTabs = document.querySelectorAll('.education-tabs .tab-button');
+    educationTabs.forEach(tab => {
+        tab.addEventListener('click', (e) => {
+            educationTabs.forEach(t => t.classList.remove('active'));
             e.target.classList.add('active');
-            populateNutritiousCrops(e.target.dataset.category);
+            renderEducationResources();
         });
     });
-
-    // Equipment toggle
-    document.querySelectorAll('.equipment-toggle .toggle-button').forEach(button => {
-        button.addEventListener('click', (e) => {
-            document.querySelectorAll('.equipment-toggle .toggle-button').forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
-            populateEquipment(e.target.dataset.type);
-        });
-    });
-
-    // Education tabs
-    document.querySelectorAll('.education-tabs .tab-button').forEach(button => {
-        button.addEventListener('click', (e) => {
-            document.querySelectorAll('.education-tabs .tab-button').forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
-            populateEducation(e.target.dataset.type);
-        });
-    });
-
-    // Marketing tabs
-    document.querySelectorAll('.marketing-tabs .tab-button').forEach(button => {
-        button.addEventListener('click', () => {
-            renderMarketingStrategies(button.dataset.crop);
-        });
-    });
-
-    // Budget tabs
-    document.querySelectorAll('.budget-tab').forEach(button => {
-        button.addEventListener('click', () => {
-            renderBudgetRecommendations(button.dataset.budget);
-        });
-    });
-
-    // ROI Calculator
-    document.getElementById('calculateROI').addEventListener('click', calculateROI);
-
-    // Initialize Growth Tracker
-    window.growthTracker = new GrowthTracker();
-    growthTracker.loadFromLocalStorage();
-
-    // Initialize Market Price Tracker
-    window.marketTracker = new MarketPriceTracker();
-    marketTracker.updatePrices();
-    // Update prices every 5 minutes
-    setInterval(() => marketTracker.updatePrices(), 300000);
-
-    // Initialize Planting Calendar
-    updatePlantingCalendar();
-    // Update calendar daily
-    setInterval(updatePlantingCalendar, 86400000);
-
-    // Add crop to growth tracker
-    document.getElementById('addCrop').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const cropName = document.getElementById('cropSelect').value;
-        const plantingDate = document.getElementById('plantingDate').value;
-        growthTracker.addCrop(cropName, plantingDate);
-    });
-
-    // Weather updates
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(async position => {
-            const weather = await getWeatherData(position.coords.latitude, position.coords.longitude);
-            if (weather) {
-                document.getElementById('weatherWidget').innerHTML = `
-                    <h3>Local Weather</h3>
-                    <div class="weather-info">
-                        <p>Temperature: ${Math.round(weather.main.temp)}°C</p>
-                        <p>Humidity: ${weather.main.humidity}%</p>
-                        <p>Conditions: ${weather.weather[0].main}</p>
-                    </div>
-                `;
-            }
-        });
-    }
 });
